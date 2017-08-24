@@ -176,6 +176,11 @@
     <ClCompile Include="version.cpp" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\gllib\gllib.vcxproj">
+      <Project>{6301f662-1259-4d5f-9ca5-a965acfb00bb}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
