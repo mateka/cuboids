@@ -1,5 +1,5 @@
 #pragma once
 
 // Extension loader must be included before glfw
-#include <utils/gl.h>
+#include <gllib/gl.h>
 #include <GLFW/glfw3.h>

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <glapp/app.h>
-#include <utils/gl.h>
+#include <gllib/gl.h>
 //#include <glcuboids/moving_ship_painter.h>
 
 

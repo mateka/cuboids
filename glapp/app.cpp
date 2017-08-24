@@ -1,5 +1,5 @@
 #include <glapp/app.h>
-#include <utils/gl.h>
+#include <gllib/gl.h>
 
 
 namespace glapp {
