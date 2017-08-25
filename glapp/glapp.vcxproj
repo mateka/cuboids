@@ -180,6 +180,9 @@
     <ProjectReference Include="..\gllib\gllib.vcxproj">
       <Project>{6301f662-1259-4d5f-9ca5-a965acfb00bb}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\utils\utils.vcxproj">
+      <Project>{c8218af4-7d14-4f55-a7dc-32399c4e958a}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -159,7 +159,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="cooldown_timer.h" />
     <ClInclude Include="seconds.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="cooldown_timer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

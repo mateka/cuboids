@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include <glapp/app.h>
 #include <gllib/gl.h>
-//#include <glcuboids/moving_ship_painter.h>
+//#include "moving_ship_painter.h"
 
 
 class myapp : public glapp::app {
