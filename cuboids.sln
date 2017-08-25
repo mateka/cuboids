@@ -21,6 +21,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glapp-tests", "glapp-tests\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gllib", "gllib\gllib.vcxproj", "{6301F662-1259-4D5F-9CA5-A965ACFB00BB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "physicslib", "physicslib\physicslib.vcxproj", "{D4B5B49C-1080-4D56-8637-FCBF10B1617B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -69,6 +71,14 @@ Global
 		{6301F662-1259-4D5F-9CA5-A965ACFB00BB}.Release|x64.Build.0 = Release|x64
 		{6301F662-1259-4D5F-9CA5-A965ACFB00BB}.Release|x86.ActiveCfg = Release|Win32
 		{6301F662-1259-4D5F-9CA5-A965ACFB00BB}.Release|x86.Build.0 = Release|Win32
+		{D4B5B49C-1080-4D56-8637-FCBF10B1617B}.Debug|x64.ActiveCfg = Debug|x64
+		{D4B5B49C-1080-4D56-8637-FCBF10B1617B}.Debug|x64.Build.0 = Debug|x64
+		{D4B5B49C-1080-4D56-8637-FCBF10B1617B}.Debug|x86.ActiveCfg = Debug|Win32
+		{D4B5B49C-1080-4D56-8637-FCBF10B1617B}.Debug|x86.Build.0 = Debug|Win32
+		{D4B5B49C-1080-4D56-8637-FCBF10B1617B}.Release|x64.ActiveCfg = Release|x64
+		{D4B5B49C-1080-4D56-8637-FCBF10B1617B}.Release|x64.Build.0 = Release|x64
+		{D4B5B49C-1080-4D56-8637-FCBF10B1617B}.Release|x86.ActiveCfg = Release|Win32
+		{D4B5B49C-1080-4D56-8637-FCBF10B1617B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
