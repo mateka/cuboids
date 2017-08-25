@@ -43,6 +43,12 @@ version window::glversion() const {
 	);
 }
 
+resolution window::view_resolution() const {
+	int width, height;
+	glfwGetFramebufferSize(m_window, &width, &height);
+	return resolution(width, height);
+}
+
 int window::get_key(const int key) const {
 	return glfwGetKey(m_window, key);
 }

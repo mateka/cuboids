@@ -30,6 +30,10 @@ public:
 	*   \return OpenGL version used by app's OpenGL context. */
 	version glversion() const;
 
+	/*! \bref Get windows current dimensions.
+	*   \return Current resolution of window. */
+	resolution view_resolution() const;
+
 	/*! \brief Retrive state of given key.
 	*   \param key key, for which state has to be checked
 	*   \return State of given key. */

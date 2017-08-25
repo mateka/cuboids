@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <utils/seconds.h>
 #include <physicslib/include_bullet.h>
 #include <physicslib/box.h>
 
@@ -28,6 +29,11 @@ public:
 	/*! \brief Sets gravity in world.
 	*   \param gv gravity vector. */
 	void gravity(const btVector3& gv);
+
+	/*! \brief Updates world state - steps simulaton.
+	*   \param time step time.
+	*   \param subSteps max number of simulation sub steps (default: 1) */
+	void update(const utils::seconds time, const int subSteps = 1);
 
 	/*! \brief Create dynamic rigid body with cuboid shape.
 	*   \param mass mass of the box.

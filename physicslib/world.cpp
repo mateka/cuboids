@@ -16,6 +16,10 @@ void world::gravity(const btVector3& gv) {
 	m_worldSimulation.setGravity(gv);
 }
 
+void world::update(const utils::seconds time, const int subSteps) {
+	m_worldSimulation.stepSimulation(btScalar(time.count()), subSteps);
+}
+
 std::unique_ptr<box> world::create_dynamic_box(
 	const float mass,
 	const btVector3& size,

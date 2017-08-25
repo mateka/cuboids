@@ -12,6 +12,10 @@ version app::glversion() const {
 	return m_window.glversion();
 }
 
+resolution app::view_resolution() const {
+	return m_window.view_resolution();
+}
+
 int app::get_key(const int key) const {
 	return m_window.get_key(key);
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <physicslib/include_bullet.h>
+#include <glm/mat4x4.hpp>
 
 
 namespace physicslib {
@@ -61,6 +62,38 @@ public:
 	// copying is disabled
 	body(const body&) = delete;
 	body& operator=(const body&) = delete;
+
+	/*! \brief Constrains axis movement.
+	*   \param x switch, whether allow movement on x axis.
+	*   \param y switch, whether allow movement on y axis.
+	*   \param z switch, whether allow movement on z axis.*/
+	void constrain_movement(const bool x, const bool y, const bool z);
+
+	/*! \brief Constrains axis rotation.
+	*   \param x switch, whether allow rotation on x axis.
+	*   \param y switch, whether allow rotation on y axis.
+	*   \param z switch, whether allow rotation on z axis.*/
+	void constrain_rotation(const bool x, const bool y, const bool z);
+
+	/*! \brief Linear velocity accessor.
+	*   \return Linear velocity of the body. */
+	btVector3 velocity() const;
+
+	/*! \brief Linear velocity setter.
+	*   \param v linear velocity of the body. */
+	void velocity(const btVector3& v);
+
+	/*! \brief Angular velocity accessor.
+	*   \return Angular velocity of the body. */
+	btVector3 angular_velocity() const;
+
+	/*! \brief Angular velocity setter.
+	*   \param v angular velocity of the body. */
+	void angular_velocity(const btVector3& v);
+
+	/*! \brief Returns transform matrix of the body.
+	*   \return Body's transform. */
+	glm::mat4 transform() const;
 private:
 	btDiscreteDynamicsWorld& m_world;
 	btDefaultMotionState m_motionState;

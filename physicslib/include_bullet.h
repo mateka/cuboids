@@ -6,6 +6,7 @@
 	#pragma warning(disable: 4305)
 #endif	// _MSC_VER  
 
+#define BT_USE_DOUBLE_PRECISION
 #include <bullet/btBulletDynamicsCommon.h>
 
 #ifdef _MSC_VER

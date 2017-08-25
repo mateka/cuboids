@@ -19,14 +19,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="cuboids_glapp.cpp" />
+    <ClCompile Include="game_painter.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ship_factory.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\cuboidslib\cuboidslib.vcxproj">
+      <Project>{ae37d418-7e10-4ee9-8a46-7260ef5e402f}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\glapp\glapp.vcxproj">
       <Project>{2bbd62ec-5b14-4bf8-93ca-739d4af7b409}</Project>
     </ProjectReference>
     <ProjectReference Include="..\gllib\gllib.vcxproj">
       <Project>{6301f662-1259-4d5f-9ca5-a965acfb00bb}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\painterslib\painterslib.vcxproj">
+      <Project>{2560da3c-82be-4658-90fe-bfb7b14e6d2d}</Project>
     </ProjectReference>
     <ProjectReference Include="..\physicslib\physicslib.vcxproj">
       <Project>{d4b5b49c-1080-4d56-8637-fcbf10b1617b}</Project>
@@ -34,6 +43,11 @@
     <ProjectReference Include="..\utils\utils.vcxproj">
       <Project>{c8218af4-7d14-4f55-a7dc-32399c4e958a}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cuboids_glapp.h" />
+    <ClInclude Include="game_painter.h" />
+    <ClInclude Include="ship_factory.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -119,6 +133,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
