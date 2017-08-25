@@ -7,7 +7,7 @@
 namespace gllib {
 
 shader::shader(const gl::GLenum type, const char* code)
-	: m_shaderid(gl::glCreateShader(type))
+	: m_shaderid{ gl::glCreateShader(type) }
 {
 	if (!m_shaderid)
 		throw glerror();
@@ -31,7 +31,7 @@ shader::shader(const gl::GLenum type, const char* code)
 }
 
 shader::shader(shader&& other)
-	: m_shaderid(other.m_shaderid)
+	: m_shaderid{ other.m_shaderid }
 {
 	other.m_shaderid = 0;
 }
@@ -51,7 +51,7 @@ shader::~shader() {
 
 
 shader_compilation_error::shader_compilation_error()
-	: runtime_error("Shader compilation failed")
+	: runtime_error{ "Shader compilation failed" }
 {}
 
 }

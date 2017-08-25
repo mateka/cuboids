@@ -5,7 +5,7 @@
 namespace glapp {
 
 glfw_error::glfw_error(int error, const char* description)
-	: runtime_error(description), m_code(error)
+	: runtime_error{ description }, m_code{ error }
 {}
 
 
@@ -22,7 +22,7 @@ glfw_wrapper::~glfw_wrapper() {
 }
 
 glfw_creation_error::glfw_creation_error()
-    : runtime_error("glfwInit failed")
+	: runtime_error{ "glfwInit failed" }
 {}
 
 }

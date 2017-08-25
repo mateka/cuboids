@@ -28,7 +28,7 @@ const char* glerror_text() {
 }
 
 glerror::glerror()
-	: runtime_error(glerror_text())
+	: runtime_error{ glerror_text() }
 {}
 
 }

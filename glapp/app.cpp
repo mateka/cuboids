@@ -5,7 +5,7 @@
 namespace glapp {
 
 app::app(const app::params_type& params)
-	: m_window(params)
+	: m_window{ params }
 {}
 
 version app::glversion() const {

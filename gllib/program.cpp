@@ -7,7 +7,7 @@
 namespace gllib {
 
 program::program(std::initializer_list<shader> shaders)
-	: m_programid(gl::glCreateProgram())
+	: m_programid{ gl::glCreateProgram() }
 {
 	if (!m_programid)
 		throw glerror();
@@ -78,7 +78,7 @@ void program::matrix(const std::string& name, const glm::mat4& mat) {
 
 
 program_link_error::program_link_error()
-	: runtime_error("Program linkage failed")
+	: runtime_error{ "Program linkage failed" }
 {}
 
 }

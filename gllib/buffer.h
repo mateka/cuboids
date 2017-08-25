@@ -17,7 +17,7 @@ public:
 
 	/*! \brief Moves data from other buffer */
 	buffer_data(buffer_data&& other)
-		: m_data(other.m_data), m_target(other.m_target)
+		: m_data{ other.m_data }, m_target{ other.m_target }
 	{
 		other.m_data = nullptr;
 	}
@@ -76,7 +76,7 @@ private:
 	*   \param target OpenGL target of buffer data.
 	*   \param access buffer access type. */
 	buffer_data(const gl::GLenum target, const gl::GLenum access)
-		: buffer_data(static_cast<type*>(gl::glMapBuffer(target, access)), target)
+		: buffer_data{ static_cast<type*>(gl::glMapBuffer(target, access)), target }
 	{}
 
 	/*! \brief Maps part of gl buffer.
@@ -85,7 +85,7 @@ private:
 	*   \param length buffer length.
 	*   \param access buffer access type flags. */
 	buffer_data(const gl::GLenum target, const gl::GLintptr offset, const gl::GLsizeiptr length, const gl::GLbitfield access)
-		: buffer_data(static_cast<type*>(gl::glMapBufferRange(target, offset, length, access)), target)
+		: buffer_data{ static_cast<type*>(gl::glMapBufferRange(target, offset, length, access)), target }
 	{}
 
 	type* m_data;

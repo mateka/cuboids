@@ -5,18 +5,18 @@
 namespace gllib {
 
 vbo::vbo()
-	: m_arrayid([]() {
+	: m_arrayid{ []() {
 		gl::GLuint arrayID;
 		gl::glGenVertexArrays(1, &arrayID);
 		return arrayID;
-	}())
+	}() }
 {
 	if (!m_arrayid)
 		throw glerror();
 }
 
 vbo::vbo(vbo&& other)
-	: m_arrayid(other.m_arrayid)
+	: m_arrayid{ other.m_arrayid }
 {
 	other.m_arrayid = 0;
 }
