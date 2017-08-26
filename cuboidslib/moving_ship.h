@@ -19,8 +19,7 @@ public:
 		physicslib::world& w,
 		const float size,
 		const glm::vec3& pos,
-		const float speed,
-		const float worldSize
+		const float speed
 	);
 
 	/*! \brief Update object state.

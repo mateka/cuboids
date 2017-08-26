@@ -10,8 +10,8 @@ ship_factory::ship_factory(const glm::vec3& pos, const float speed)
 {}
 
 std::unique_ptr<cuboidslib::iship>
-ship_factory::create(physicslib::world& w, const float worldSize) {
-	return std::make_unique<cuboidslib::moving_ship>(w, 1.0f, m_shipPosition, m_shipSpeed, worldSize);
+ship_factory::create(physicslib::world& w) {
+	return std::make_unique<cuboidslib::moving_ship>(w, 1.0f, m_shipPosition, m_shipSpeed);
 }
 
 

@@ -21,7 +21,7 @@ void cuboids_glapp::update(const seconds delta) {
 
 	m_painter.paint(m_game);
 
-	std::cout << "FPS: " << 1.0 / delta.count() << std::endl;
+	//std::cout << "FPS: " << 1.0 / delta.count() << std::endl;
 }
 
 void cuboids_glapp::handle_input() {

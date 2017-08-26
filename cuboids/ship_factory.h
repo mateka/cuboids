@@ -16,8 +16,7 @@ public:
 	ship_factory(const glm::vec3& pos, const float speed);
 
 	/*! \brief Creates moving_ship instance. */
-	std::unique_ptr<cuboidslib::iship> create(
-		physicslib::world& w, const float worldSize) override;
+	std::unique_ptr<cuboidslib::iship> create(physicslib::world& w) override;
 private:
 	glm::vec3 m_shipPosition;
 	float m_shipSpeed;

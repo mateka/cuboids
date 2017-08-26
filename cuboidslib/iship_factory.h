@@ -16,8 +16,7 @@ public:
 	virtual ~iship_factory() {}
 
 	/*! \brief Creates ship. */
-	virtual std::unique_ptr<iship> create(
-		physicslib::world& w, const float worldSize) = 0;
+	virtual std::unique_ptr<iship> create(physicslib::world& w) = 0;
 };
 
 }

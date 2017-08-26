@@ -1,5 +1,6 @@
 #pragma once
 
+#include <array>
 #include <cuboidslib/icuboid_object.h>
 #include <cuboidslib/iship.h>
 #include <cuboidslib/iship_factory.h>
@@ -43,6 +44,7 @@ public:
 	void visit(ivisitor& v) const override;
 private:
 	physicslib::world m_world;
+	std::array<std::unique_ptr<physicslib::box>, 2> m_walls;
 	std::unique_ptr<iship> m_player;
 	float m_worldSize;
 };

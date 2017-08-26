@@ -11,15 +11,13 @@ moving_ship::moving_ship(
 	physicslib::world& w,
 	const float size,
 	const glm::vec3& pos,
-	const float speed,
-	const float worldSize
+	const float speed
 )
 	: m_body{ w.create_dynamic_box(size, {size, size, size}, {pos[0], pos[1], pos[2]} ) },
 	m_size{ size }, m_speed{ speed }
 {
 	m_body->constrain_movement(true, false, false); // Ship can only move on x axis
 	m_body->constrain_rotation(false, false, true); // Ship can only rotate around z axis
-	//todo limit ship movement by worldSize
 }
 
 void moving_ship::update(const seconds delta) {
