@@ -1,5 +1,6 @@
 #include <cuboids/game_painter.h>
 #include <cuboidslib/moving_ship.h>
+#include <cuboidslib/bullet.h>
 #include <gllib/gl.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -46,6 +47,9 @@ void game_painter::on_visit(const cuboidslib::moving_ship& s) {
 	painterslib::pyramids::instance instance{ s.transform() };
 	painterslib::pyramids::instance instance2{ glm::translate(glm::mat4(1.0), glm::vec3(-2, 0, 1)), 0.5 };
 	m_shipPainter.paint({ instance, instance2 });
+}
+
+void game_painter::on_visit(const cuboidslib::bullet& s) {
 }
 
 }

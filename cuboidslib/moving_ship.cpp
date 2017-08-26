@@ -1,8 +1,6 @@
 #include <cuboidslib/moving_ship.h>
 #include <cuboidslib/ivisitor.h>
 #include <physicslib/world.h>
-#include <array>
-#include <iostream>
 
 
 namespace cuboidslib {

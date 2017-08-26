@@ -178,7 +178,9 @@
     <ClInclude Include="ivisitor.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="bullet.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="iprojectile.cpp" />
     <ClCompile Include="moving_ship.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

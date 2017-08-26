@@ -26,6 +26,9 @@ public:
 
 	/*! \brief Visits moving ship. */
 	void on_visit(const cuboidslib::moving_ship&) override;
+
+	/*! \brief Visits bullet. */
+	void on_visit(const cuboidslib::bullet&) override;
 private:
 	painterslib::pyramids m_shipPainter;
 	glm::mat4 m_pv;
