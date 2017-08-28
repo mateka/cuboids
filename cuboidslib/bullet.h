@@ -1,6 +1,6 @@
 #pragma once
 
-#include <cuboidslib/iprojectile.h>
+#include <cuboidslib/projectile.h>
 #include <memory>
 #include <glm/vec3.hpp>
 #include <physicslib/box.h>
@@ -13,7 +13,7 @@ class world;
 namespace cuboidslib {
 
 /*! \brief Simple bullet */
-class bullet : public iprojectile {
+class bullet : public projectile {
 public:
 	bullet(
 		physicslib::world& w,
@@ -25,6 +25,10 @@ public:
 	/*! \brief visitor pattern - visiting this object.
 	*   \param v visitor object.*/
 	void visit(ivisitor& v) const override;
+
+	/*! \brief Returns model matrix of the ship.
+	*   \return Ship's body transform. */
+	glm::mat4 transform() const;
 private:
 	std::unique_ptr<physicslib::box> m_body;
 };

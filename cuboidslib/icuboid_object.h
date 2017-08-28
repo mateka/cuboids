@@ -30,6 +30,10 @@ public:
 	/*! \brief visitor pattern - visiting this object.
 	*   \param v visitor object.*/
 	virtual void visit(ivisitor& v) const = 0;
+
+	/*! \brief Checks if object is alive (dead should be destroyed).
+	*   \return true if object should stay in game. */
+	virtual bool alive() const = 0;
 };
 
 }

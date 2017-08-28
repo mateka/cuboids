@@ -1,8 +1,10 @@
 #pragma once
 
 #include <array>
+#include <vector>
 #include <cuboidslib/icuboid_object.h>
 #include <cuboidslib/iship.h>
+#include <cuboidslib/iprojectile.h>
 #include <cuboidslib/iship_factory.h>
 #include <physicslib/world.h>
 
@@ -14,7 +16,7 @@ class game final : public icuboid_object {
 public:
 	game(const float worldSize, iship_factory& ship_factory);
 
-	// movingis disabled
+	// moving is disabled
 	game(game&&) = delete;
 	game& operator=(game&&) = delete;
 
@@ -25,6 +27,10 @@ public:
 	/*! \brief Game world size accessor.
 	*   \return Game world size.*/
 	float worldSize() const;
+
+	/*! \brief Test if game is still playable.
+	*   \return true if player has not collided with cuboid. */
+	bool alive() const;
 
 	/*! \brief Move ship to the left. */
 	void left();
@@ -46,6 +52,7 @@ private:
 	physicslib::world m_world;
 	std::array<std::unique_ptr<physicslib::box>, 2> m_walls;
 	std::unique_ptr<iship> m_player;
+	std::vector<std::unique_ptr<iprojectile>> m_bullets;
 	float m_worldSize;
 };
 

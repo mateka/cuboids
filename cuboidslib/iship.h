@@ -3,7 +3,12 @@
 #include <cuboidslib/icuboid_object.h>
 #include <cuboidslib/iprojectile.h>
 #include <memory>
+#include <vector>
 
+
+namespace physicslib {
+class world;
+}
 
 namespace cuboidslib {
 
@@ -17,8 +22,9 @@ public:
     virtual void right() = 0;
 
     /*! \brief Shot.
-    *   \return Projectile object. */
-    virtual std::unique_ptr<iprojectile> shot() = 0;
+	*   \param w physics world
+    *   \return Collection of projectile objects. */
+    virtual std::vector<std::unique_ptr<iprojectile>> shot(physicslib::world& w) = 0;
 };
 
 }

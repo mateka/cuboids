@@ -4,6 +4,7 @@
 #include <cuboidslib/game.h>
 #include <cuboids/ship_factory.h>
 #include <cuboids/game_painter.h>
+#include <memory>
 
 
 namespace cuboids {
@@ -18,7 +19,7 @@ private:
 	void handle_input();
 
 	ship_factory m_shipFactory;
-	cuboidslib::game m_game;
+	std::unique_ptr<cuboidslib::game> m_game;
 	game_painter m_painter;
 };
 

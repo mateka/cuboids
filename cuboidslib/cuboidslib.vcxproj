@@ -168,19 +168,23 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bullet.h" />
+    <ClInclude Include="default_gun.h" />
     <ClInclude Include="error.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="icuboid_object.h" />
     <ClInclude Include="iprojectile.h" />
+    <ClInclude Include="iprojectile_factory.h" />
     <ClInclude Include="iship.h" />
     <ClInclude Include="iship_factory.h" />
     <ClInclude Include="moving_ship.h" />
     <ClInclude Include="ivisitor.h" />
+    <ClInclude Include="projectile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bullet.cpp" />
+    <ClCompile Include="default_gun.cpp" />
     <ClCompile Include="game.cpp" />
-    <ClCompile Include="iprojectile.cpp" />
+    <ClCompile Include="projectile.cpp" />
     <ClCompile Include="moving_ship.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

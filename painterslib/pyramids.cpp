@@ -63,6 +63,10 @@ pyramids::pyramids(
 	gl::glVertexAttribPointer(1, 3, gl::GLenum::GL_FLOAT, gl::GL_FALSE, sizeof(vertex), (void*)sizeof(vertex::position));
 }
 
+pyramids::pyramids(const std::size_t max_instances, const glm::vec4& color)
+	: pyramids(max_instances, color, color, color, color, color)
+{}
+
 void pyramids::update(const glm::mat4& pv, const utils::seconds delta) {
 	m_glsl.matrix("pv", pv);
 }

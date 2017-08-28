@@ -15,6 +15,7 @@ game_painter::game_painter(const float worldSize)
 		glm::vec4{1, 0, 0, 1}, glm::vec4{1, 1, 0, 1},
 		glm::vec4{0, 1, 0, 1}, glm::vec4{0, 0, 1, 1}
 	},
+	m_bulletsPainter{512, glm::vec4{ 0.85f, 0, 0, 1 } },
 	m_worldSize(worldSize)
 {
 	gl::glClearColor(0, 0, 0.5f, 1.0f);
@@ -36,20 +37,26 @@ void game_painter::update(const glapp::resolution& res, const utils::seconds del
 	m_pv = projection * camera;
 
 	m_shipPainter.update(m_pv, delta);
+	m_bulletsPainter.update(m_pv, delta);
 }
 
 void game_painter::paint(const cuboidslib::game& game) {
 	// paint some fireworks
-	game.visit(*this);
+	game.visit(*this); // paint or gather instances to paint
+
+	// paint cached objects
+	m_bulletsPainter.paint(m_bullets);
+
+	m_bullets.clear();
 }
 
 void game_painter::on_visit(const cuboidslib::moving_ship& s) {
 	painterslib::pyramids::instance instance{ s.transform() };
-	painterslib::pyramids::instance instance2{ glm::translate(glm::mat4(1.0), glm::vec3(-2, 0, 1)), 0.5 };
-	m_shipPainter.paint({ instance, instance2 });
+	m_shipPainter.paint({ instance });
 }
 
-void game_painter::on_visit(const cuboidslib::bullet& s) {
+void game_painter::on_visit(const cuboidslib::bullet& b) {
+	m_bullets.push_back(b.transform());
 }
 
 }

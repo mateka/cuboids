@@ -41,6 +41,15 @@ public:
 		const glm::vec4& right_bottom
 	);
 
+	/*! \brief Creates painter, which paints pyramids
+	* with the same color in each vertex.
+	*   \param max_instances max count of instances.
+	*   \param color vertices color.*/
+	pyramids(
+		const std::size_t max_instances,
+		const glm::vec4& color
+	);
+
 	virtual ~pyramids() {}
 
 	// moving is disabled

@@ -19,6 +19,10 @@ float game::worldSize() const {
 	return m_worldSize;
 }
 
+bool game::alive() const {
+	return m_player->alive();
+}
+
 void game::left() {
 	m_player->left();
 }
@@ -28,16 +32,31 @@ void game::right() {
 }
 
 void game::shot() {
-	m_player->shot();
+	auto newBullets = m_player->shot(m_world);
+	std::move(
+		std::begin(newBullets), std::end(newBullets),
+		std::back_inserter(m_bullets)
+	);
 }
 
 void game::update(const seconds delta) {
 	m_world.update(delta);
+	// Update objects
 	m_player->update(delta);
+	for (auto& b : m_bullets)
+		b->update(delta);
+	// Remove dead entities
+	m_bullets.erase(
+		std::remove_if(std::begin(m_bullets), std::end(m_bullets),
+					   [](const auto& b) {return !b->alive(); }),
+		m_bullets.end()
+	);
 }
 
 void game::visit(ivisitor& v) const {
 	// other objects
+	for (const auto& b : m_bullets)
+		b->visit(v);
 	m_player->visit(v);
 }
 

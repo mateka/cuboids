@@ -30,7 +30,12 @@ public:
 	/*! \brief Visits bullet. */
 	void on_visit(const cuboidslib::bullet&) override;
 private:
+	// painters
 	painterslib::pyramids m_shipPainter;
+	painterslib::pyramids m_bulletsPainter;
+	// cached instances to paint
+	std::vector<painterslib::pyramids::instance> m_bullets;
+	// other
 	glm::mat4 m_pv;
 	float m_worldSize;
 };
