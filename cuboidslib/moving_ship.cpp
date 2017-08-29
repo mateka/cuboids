@@ -15,7 +15,7 @@ moving_ship::moving_ship(
 	const float speed
 )
 	: m_defaultGun{500ms}, m_gun {&m_defaultGun},
-	m_body{ w.create_dynamic_box(size, {size / 2, size / 2, size / 2}, {pos.x, pos.y, pos.z} ) },
+	m_body{ w.create_dynamic_box(size, 0.5f * glm::vec3{size, size, size}, pos) },
 	m_gunPosition{0, 0, -0.5},
 	m_speed{ speed }
 {
@@ -49,7 +49,7 @@ void moving_ship::right() {
 
 std::vector<std::unique_ptr<iprojectile>> moving_ship::shot(physicslib::world& w) {
 	const auto pos = transform() * glm::vec4{ m_gunPosition, 1};
-	return m_gun->create(w, { pos.x, pos.y, pos.z });
+	return m_gun->create(w, pos);
 }
 
 glm::mat4 moving_ship::transform() const {

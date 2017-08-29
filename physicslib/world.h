@@ -24,11 +24,11 @@ public:
 
 	/*! \brief Gets gravity in world.
 	*   \return Gravity vector. */
-	btVector3 gravity() const;
+	glm::vec3 gravity() const;
 
 	/*! \brief Sets gravity in world.
 	*   \param gv gravity vector. */
-	void gravity(const btVector3& gv);
+	void gravity(const glm::vec3& gv);
 
 	/*! \brief Updates world state - steps simulaton.
 	*   \param time step time.
@@ -42,7 +42,7 @@ public:
 	*   \return Rigid body with cuboid shape. */
 	std::unique_ptr<box> create_dynamic_box(
 		const float mass,
-		const btVector3& size,
+		const glm::vec3& size,
 		const btTransform& startTransform
 	);
 
@@ -53,8 +53,8 @@ public:
 	*   \return Rigid body with cuboid shape. */
 	std::unique_ptr<box> create_dynamic_box(
 		const float mass,
-		const btVector3& size,
-		const btVector3& startPosition
+		const glm::vec3& size,
+		const glm::vec3& startPosition
 	);
 
 	/*! \brief Create dynamic rigid body with cuboid shape.
@@ -62,14 +62,14 @@ public:
 	*   \param startTransform starting transform of the box.
 	*   \return Rigid body with cuboid shape. */
 	std::unique_ptr<box> create_static_box(
-		const btVector3& size, const btTransform& startTransform
+		const glm::vec3& size, const btTransform& startTransform
 	);
 	/*! \brief Create dynamic rigid body with cuboid shape.
 	*   \param size half extends of the box.
 	*   \param startTransform starting position of the box.
 	*   \return Rigid body with cuboid shape. */
 	std::unique_ptr<box> create_static_box(
-		const btVector3& size, const btVector3& startPosition
+		const glm::vec3& size, const glm::vec3& startPosition
 	);
 private:
 	btDefaultCollisionConfiguration m_collisionConfiguration;

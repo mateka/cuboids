@@ -30,12 +30,12 @@ body::body(
 	btDiscreteDynamicsWorld& world,
 	const float mass,
 	btCollisionShape& shape,
-	const btVector3& startPosition
+	const glm::vec3& startPosition
 )
 	: body{ world, mass, shape, [&startPosition]() {
 		btTransform startTransform;
 		startTransform.setIdentity();
-		startTransform.setOrigin(startPosition);
+		startTransform.setOrigin({ startPosition.x, startPosition.y, startPosition.z });
 		return startTransform;
 	}() }
 {}
@@ -51,7 +51,7 @@ body::body(
 body::body(
 	btDiscreteDynamicsWorld& world,
 	btCollisionShape& shape,
-	const btVector3& startPosition
+	const glm::vec3& startPosition
 )
 	: body{ world, 0.0f, shape, startPosition }
 {}
@@ -66,22 +66,24 @@ void body::constrain_rotation(const bool x, const bool y, const bool z) {
 	m_rigidBody.setAngularFactor({ b2f(x), b2f(y), b2f(z) });
 }
 
-btVector3 body::velocity() const {
-	return m_rigidBody.getLinearVelocity();
+glm::vec3 body::velocity() const {
+	auto v = m_rigidBody.getLinearVelocity();
+	return { v.x(), v.y(), v.z() };
 }
 
-void body::velocity(const btVector3& v) {
+void body::velocity(const glm::vec3& v) {
 	m_rigidBody.activate(true);
-	m_rigidBody.setLinearVelocity(v);
+	m_rigidBody.setLinearVelocity({ v.x, v.y, v.z });
 }
 
-btVector3 body::angular_velocity() const {
-	return m_rigidBody.getAngularVelocity();
+glm::vec3 body::angular_velocity() const {
+	auto v = m_rigidBody.getAngularVelocity();
+	return { v.x(), v.y(), v.z() };
 }
 
-void body::angular_velocity(const btVector3& v) {
+void body::angular_velocity(const glm::vec3& v) {
 	m_rigidBody.activate(true);
-	m_rigidBody.setAngularVelocity(v);
+	m_rigidBody.setAngularVelocity({ v.x, v.y, v.z });
 }
 
 void body::position(const glm::vec3& pos) {

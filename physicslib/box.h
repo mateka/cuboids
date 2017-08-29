@@ -16,7 +16,7 @@ class box_shape_holder {
 public:
 	/*! \brief Creates box shape.
 	*   \param size half extends of the box.*/
-	box_shape_holder(const btVector3& size);
+	box_shape_holder(const glm::vec3& size);
 
 	virtual ~box_shape_holder() {}
 protected:
@@ -36,7 +36,7 @@ public:
 	box(
 		btDiscreteDynamicsWorld& world,
 		const float mass,
-		const btVector3& size,
+		const glm::vec3& size,
 		const btTransform& startTransform
 	);
 
@@ -48,8 +48,8 @@ public:
 	box(
 		btDiscreteDynamicsWorld& world,
 		const float mass,
-		const btVector3& size,
-		const btVector3& startPosition
+		const glm::vec3& size,
+		const glm::vec3& startPosition
 	);
 
 	/*! \brief Creates static box.
@@ -58,7 +58,7 @@ public:
 	*   \param startTransform starting transform of the box.*/
 	box(
 		btDiscreteDynamicsWorld& world,
-		const btVector3& size,
+		const glm::vec3& size,
 		const btTransform& startTransform
 	);
 
@@ -68,8 +68,8 @@ public:
 	*   \param startTransform starting position of the box.*/
 	box(
 		btDiscreteDynamicsWorld& world,
-		const btVector3& size,
-		const btVector3& startPosition
+		const glm::vec3& size,
+		const glm::vec3& startPosition
 	);
 
 	/*! \brief Calculates scale transform used on this box.

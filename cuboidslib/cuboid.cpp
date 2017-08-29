@@ -13,17 +13,13 @@ cuboid::cuboid(
 	const glm::vec3& scale,
 	const glm::vec3& rotation
 )
-	: m_body{ w.create_dynamic_box(
-		static_cast<float>(scale.length()),
-		{ scale.x / 2, scale.y / 2, scale.z / 2 },
-		{ pos.x, pos.y, pos.z }
-	) }
+	: m_body{ w.create_dynamic_box(static_cast<float>(scale.length()), 0.5f * scale, pos) }
 {
 	m_body->constrain_movement(true, false, true); // Cuboid can only move on xz plane
 	m_body->restitution(1.0f);	// cuboids like to bounce
 
-	m_body->velocity({ velocity.x, velocity.y, velocity.z });
-	m_body->angular_velocity({ rotation.x, rotation.y, rotation.z });
+	m_body->velocity(velocity);
+	m_body->angular_velocity(rotation);
 }
 
 void cuboid::update(const seconds delta) {

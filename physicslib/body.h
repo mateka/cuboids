@@ -31,7 +31,7 @@ public:
 		btDiscreteDynamicsWorld& world,
 		const float mass,
 		btCollisionShape& shape,
-		const btVector3& startPosition
+		const glm::vec3& startPosition
 	);
 
 	/*! \brief Creates static rigid body.
@@ -51,7 +51,7 @@ public:
 	body(
 		btDiscreteDynamicsWorld& world,
 		btCollisionShape& shape,
-		const btVector3& startPosition
+		const glm::vec3& startPosition
 	);
 
 	virtual ~body();
@@ -78,19 +78,19 @@ public:
 
 	/*! \brief Linear velocity accessor.
 	*   \return Linear velocity of the body. */
-	btVector3 velocity() const;
+	glm::vec3 velocity() const;
 
 	/*! \brief Linear velocity setter.
 	*   \param v linear velocity of the body. */
-	void velocity(const btVector3& v);
+	void velocity(const glm::vec3& v);
 
 	/*! \brief Angular velocity accessor.
 	*   \return Angular velocity of the body. */
-	btVector3 angular_velocity() const;
+	glm::vec3 angular_velocity() const;
 
 	/*! \brief Angular velocity setter.
 	*   \param v angular velocity of the body. */
-	void angular_velocity(const btVector3& v);
+	void angular_velocity(const glm::vec3& v);
 
 	/*! \brief Sets body's position.
 	*   \param pos body's position. */
