@@ -11,9 +11,18 @@ namespace cuboids {
 cuboids_glapp::cuboids_glapp(const cuboids_glapp::params_type& params)
 	: app{ params }, m_gameSize{ 6.0f }, m_shipFactory{ {0, 0, 5}, 5.0f },
 	m_game{ new_game() },
-	m_painter{ m_gameSize, m_game->max_bullets(), m_game->max_cuboids() }
+	m_painter{ m_gameSize, m_game->max_bullets(), m_game->max_cuboids() },
+	m_showFPS{ false }
 {
-	std::cout << "OpenGL version: " << glversion() << std::endl;
+	std::cout
+		<< "OpenGL version: " << glversion() << "\n"
+		<< "\nKeys:\n"
+		<< "\t left arrow\t- move left\n"
+		<< "\t right arrow\t- move right\n"
+		<< "\t space\t- shoot\n"
+		<< "\t f\t- show FPS\n"
+		<< "\t b\t- show bunding boxes"
+		<< std::endl;
 }
 
 void cuboids_glapp::update(const seconds delta) {
@@ -28,7 +37,8 @@ void cuboids_glapp::update(const seconds delta) {
 	if (!m_game->playable())
 		m_game = new_game();
 
-	std::cout << "FPS: " << 1.0 / delta.count() << std::endl;
+	if (m_showFPS)
+		std::cout << "FPS: " << 1.0 / delta.count() << std::endl;
 }
 
 void cuboids_glapp::handle_input() {
@@ -44,6 +54,17 @@ void cuboids_glapp::handle_input() {
 		m_game->right();
 	else
 		m_game->stop();
+
+	// other keys
+	static bool b_was_pressed = false;
+	b_was_pressed = get_key(GLFW_KEY_B) == GLFW_PRESS;
+	if (b_was_pressed && get_key(GLFW_KEY_B) == GLFW_RELEASE)
+		m_painter.toogle_boxes();
+
+	static bool f_was_pressed = false;
+	f_was_pressed = get_key(GLFW_KEY_F) == GLFW_PRESS;
+	if (f_was_pressed && get_key(GLFW_KEY_F) == GLFW_RELEASE)
+		m_showFPS = !m_showFPS;
 }
 
 std::unique_ptr<cuboidslib::cuboid_factory> cuboids_glapp::cuboids_factory() {

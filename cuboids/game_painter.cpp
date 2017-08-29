@@ -22,9 +22,14 @@ game_painter::game_painter(
 	},
 	m_bulletsPainter{ maxBullets, glm::vec4{ 0.85f, 0.65f, 0, 1 } },
 	m_cuboidsPainter{ maxCuboids, glm::vec4{ 0.65f, 0.65f, 0.65f, 1 } },
-	m_worldSize(worldSize)
+	m_boxesPainter{ maxBullets + 2, glm::vec4{ 0, 0.95f, 0, 1 } },
+	m_worldSize{ worldSize }, m_showBoxes{ false }
 {
 	gl::glClearColor(0, 0, 0, 0);
+}
+
+void game_painter::toogle_boxes() {
+	m_showBoxes = !m_showBoxes;
 }
 
 void game_painter::update(const float screenRatio, const utils::seconds delta) {
@@ -39,6 +44,7 @@ void game_painter::update(const float screenRatio, const utils::seconds delta) {
 	m_shipPainter.update(m_pv, delta);
 	m_bulletsPainter.update(m_pv, delta);
 	m_cuboidsPainter.update(m_pv, delta);
+	m_boxesPainter.update(m_pv, delta);
 }
 
 void game_painter::paint(const cuboidslib::game& game) {
@@ -49,14 +55,18 @@ void game_painter::paint(const cuboidslib::game& game) {
 	// paint cached objects
 	m_bulletsPainter.paint(m_bullets);
 	m_cuboidsPainter.paint(m_cuboids);
+	if (m_showBoxes)
+		m_boxesPainter.paint(m_boxes);
 
 	// clear caches
 	m_bullets.clear();
 	m_cuboids.clear();
+	m_boxes.clear();
 }
 
 void game_painter::on_visit(const cuboidslib::moving_ship& s) {
 	m_shipPainter.paint({ s.transform() });
+	m_boxes.push_back({ s.transform() });
 }
 
 void game_painter::on_visit(const cuboidslib::bullet& b) {
@@ -64,6 +74,7 @@ void game_painter::on_visit(const cuboidslib::bullet& b) {
 		b.transform(),
 		1.0f - static_cast<float>(b.lived() / b.life_span())
 	});
+	m_boxes.push_back({ b.transform() });
 }
 
 void game_painter::on_visit(const cuboidslib::cuboid& c) {

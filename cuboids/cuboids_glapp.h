@@ -31,6 +31,7 @@ private:
 	cuboidslib::ship_factory m_shipFactory;
 	std::unique_ptr<cuboidslib::game> m_game;
 	game_painter m_painter;
+	bool m_showFPS;
 };
 
 }

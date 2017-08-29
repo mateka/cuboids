@@ -22,6 +22,9 @@ public:
 		const std::size_t maxCuboids
 	);
 
+	/*! \brief Toggles showing bounding boxes for ship and bullets. */
+	void toogle_boxes();
+
 	/*! \brief Update painter's state.
 	*   \param screenRatio window's dimensions ratio.
 	*   \param delta time from last update. */
@@ -44,12 +47,15 @@ private:
 	painterslib::pyramids m_shipPainter;
 	painterslib::pyramids m_bulletsPainter;
 	painterslib::cuboids m_cuboidsPainter;
+	painterslib::cuboids m_boxesPainter;
 	// cached instances to paint
 	std::vector<painterslib::pyramids::instance> m_bullets;
 	std::vector<painterslib::cuboids::instance> m_cuboids;
+	std::vector<painterslib::cuboids::instance> m_boxes;
 	// other
 	glm::mat4 m_pv;
 	float m_worldSize;
+	bool m_showBoxes;
 };
 
 }
