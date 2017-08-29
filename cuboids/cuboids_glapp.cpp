@@ -9,7 +9,7 @@ using namespace std::chrono_literals;
 namespace cuboids {
 
 cuboids_glapp::cuboids_glapp(const cuboids_glapp::params_type& params)
-	: app{ params }, m_gameSize{ 6.0f }, m_shipFactory{ {0, 0, 5}, 3.0f },
+	: app{ params }, m_gameSize{ 6.0f }, m_shipFactory{ {0, 0, 5}, 5.0f },
 	m_game{ new_game() },
 	m_painter{ m_gameSize, m_game->max_bullets(), m_game->max_cuboids() }
 {
@@ -42,6 +42,8 @@ void cuboids_glapp::handle_input() {
 		m_game->left();
 	else if (!left && right)
 		m_game->right();
+	else
+		m_game->stop();
 }
 
 std::unique_ptr<cuboidslib::cuboid_factory> cuboids_glapp::cuboids_factory() {

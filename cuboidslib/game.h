@@ -60,6 +60,9 @@ public:
 	/*! \brief Move ship to the right. */
 	void right();
 
+	/*! \brief Stops player movement. */
+	void stop();
+
 	/*! \brief Shot. */
 	void shot();
 

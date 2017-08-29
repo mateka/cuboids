@@ -113,6 +113,10 @@ void game::right() {
 	m_player->right();
 }
 
+void game::stop() {
+	m_player->stop();
+}
+
 void game::shot() {
 	add_objects(m_player->shot(m_world), m_bullets, m_objects);
 }

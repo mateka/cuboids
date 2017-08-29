@@ -21,6 +21,9 @@ public:
     /*! \brief Move ship to the right. */
     virtual void right() = 0;
 
+	/*! \brief Stops ship movement. */
+	virtual void stop() = 0;
+
     /*! \brief Shot.
 	*   \param w physics world
     *   \return Collection of projectile objects. */

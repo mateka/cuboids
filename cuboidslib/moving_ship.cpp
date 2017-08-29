@@ -25,8 +25,6 @@ moving_ship::moving_ship(
 }
 
 void moving_ship::update(const seconds delta) {
-	m_body->velocity({ 0, 0, 0 });
-	m_body->angular_velocity({ 0, 0, 0 });
 	m_gun->update(delta);
 }
 
@@ -51,13 +49,18 @@ const physicslib::body* moving_ship::body() const {
 }
 
 void moving_ship::left() {
-	m_body->velocity({ -m_speed, 0, 0 });
-	m_body->angular_velocity({ 0, 0, 0.5f * m_speed });
+	if (-m_speed <= m_body->velocity().x)
+		m_body->apply_force(glm::vec3{ -5, 0, 0 }, glm::vec3{ 0.5f, 0.5f, 0 });
 }
 
 void moving_ship::right() {
-	m_body->velocity({ m_speed, 0, 0 });
-	m_body->angular_velocity({ 0, 0, -0.5f * m_speed });
+	if (m_body->velocity().x <= m_speed)
+		m_body->apply_force(glm::vec3{ 5, 0, 0 }, glm::vec3{ -0.5f, 0.5f, 0 });
+}
+
+void moving_ship::stop() {
+	m_body->velocity({ 0, 0, 0 });
+	m_body->angular_velocity({ 0, 0, 0 });
 }
 
 std::vector<std::unique_ptr<iprojectile>> moving_ship::shot(physicslib::world& w) {

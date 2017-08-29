@@ -113,6 +113,11 @@ public:
 	/*! \brief Restitution setter.
 	*   \param v restitution of the body. */
 	void restitution(const float r);
+
+	/*! \brief Applies force to the body.
+	*   \param f force to apply (in world coordinates).
+	*   \param p where force should be applied (in world coordinates). */
+	void apply_force(const glm::vec3& f, const glm::vec3& p);
 private:
 	friend class world;
 

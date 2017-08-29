@@ -125,4 +125,8 @@ void body::restitution(const float r) {
 	m_rigidBody.setRestitution(r);
 }
 
+void body::apply_force(const glm::vec3& f, const glm::vec3& p) {
+	m_rigidBody.applyForce({ f.x, f.y, f.z }, { p.x, p.y, p.z });
+}
+
 }

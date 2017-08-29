@@ -58,6 +58,9 @@ public:
 	/*! \brief Move ship to the right. */
 	void right() override;
 
+	/*! \brief Stops ship movement. */
+	void stop() override;
+
 	/*! \brief Shot.
 	*   \param w physics world
 	*   \return Collection of projectile objects. */
