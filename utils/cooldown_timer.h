@@ -14,6 +14,7 @@ public:
 
     /*! \brief Creates timer with given cooldown time.
     *   Newly created timer allows immediate execution.
+	*   \param cooldown cooldown period.
     */
     cooldown_timer(const type cooldown);
 

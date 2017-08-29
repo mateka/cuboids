@@ -188,6 +188,7 @@
     <ClInclude Include="ivisitor.h" />
     <ClInclude Include="projectile.h" />
     <ClInclude Include="ship_collider.h" />
+    <ClInclude Include="ship_factory.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bullet.cpp" />
@@ -201,6 +202,7 @@
     <ClCompile Include="projectile.cpp" />
     <ClCompile Include="moving_ship.cpp" />
     <ClCompile Include="ship_collider.cpp" />
+    <ClCompile Include="ship_factory.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

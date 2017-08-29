@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cuboids/cuboids_glapp.h>
 
+
 using namespace cuboids;
 
 int main(int argc, char* argv[]) {

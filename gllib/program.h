@@ -31,7 +31,7 @@ public:
 
 	~program();
 
-	// copying is deleted
+	// copying is disabled
 	program(const program&) = delete;
 	program& operator=(const program&) = delete;
 

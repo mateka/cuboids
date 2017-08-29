@@ -1,9 +1,9 @@
-#include <cuboids/ship_factory.h>
+#include <cuboidslib/ship_factory.h>
 #include <cuboidslib/moving_ship.h>
 #include <physicslib/world.h>
 
 
-namespace cuboids {
+namespace cuboidslib {
 
 ship_factory::ship_factory(const glm::vec3& pos, const float speed)
 	: m_shipPosition{ pos }, m_shipSpeed{ speed }

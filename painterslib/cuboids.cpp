@@ -73,14 +73,6 @@ cuboids::cuboids(const std::size_t max_instances, const glm::vec4& color)
 		std::cbegin(data), std::cend(data),
 		static_cast<vertex*>(m_vertices.map(gl::GLenum::GL_WRITE_ONLY))
 	);
-
-	m_vbo.enable_array(0);
-	gl::glVertexAttribDivisor(0, 0);
-	gl::glVertexAttribPointer(0, 3, gl::GLenum::GL_FLOAT, gl::GL_FALSE, sizeof(vertex), nullptr);
-
-	m_vbo.enable_array(1);
-	gl::glVertexAttribDivisor(1, 0);
-	gl::glVertexAttribPointer(1, 3, gl::GLenum::GL_FLOAT, gl::GL_FALSE, sizeof(vertex), (void*)sizeof(vertex::position));
 }
 
 void cuboids::update(const glm::mat4& pv, const utils::seconds delta) {
@@ -89,7 +81,19 @@ void cuboids::update(const glm::mat4& pv, const utils::seconds delta) {
 
 void cuboids::paint(const std::vector<instance>& instances) const {
 	m_glsl.use();
+	
+	// Prepare vertex buffer
 	m_vertices.bind();
+
+	m_vbo.enable_array(0);
+	gl::glVertexAttribDivisor(0, 0);
+	gl::glVertexAttribPointer(0, 3, gl::GLenum::GL_FLOAT, gl::GL_FALSE, sizeof(vertex), nullptr);
+
+	m_vbo.enable_array(1);
+	gl::glVertexAttribDivisor(1, 0);
+	gl::glVertexAttribPointer(1, 3, gl::GLenum::GL_FLOAT, gl::GL_FALSE, sizeof(vertex), (void*)sizeof(vertex::position));
+
+	// Prepare instances buffer
 	m_instances.bind();
 
 	std::copy(
@@ -110,6 +114,7 @@ void cuboids::paint(const std::vector<instance>& instances) const {
 	gl::glVertexAttribDivisor(5, 1);
 	gl::glVertexAttribPointer(5, 4, gl::GLenum::GL_FLOAT, gl::GL_FALSE, sizeof(instance), (void*)(3 * sizeof(glm::vec4)));
 
+	// Draw
 	gl::glDrawArraysInstanced(
 		gl::GLenum::GL_TRIANGLES, 0,
 		static_cast<gl::GLsizei>(m_vertices.size()),

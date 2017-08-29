@@ -10,6 +10,12 @@ namespace cuboidslib {
 /*! \brief Cuboids factory */
 class cuboid_factory : public icuboid_factory {
 public:
+	/*! \brief Creates default cuboids factory.
+	*   \param seed seed for random number generator engine.
+	*   \param cooldown time between generating waves of cuboids.
+	*   \param worldSize size of world in which cuboids will be generated.
+	*   \param how many additional cuboids will be spawned for each cuboid,
+	*   which was killed by player. */
 	cuboid_factory(
 		const std::mt19937_64::result_type seed,
 		const seconds& cooldown,

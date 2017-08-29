@@ -8,8 +8,8 @@
 
 namespace painterslib {
 
-/*! \brief Base class for painting pyramids in OpenGL. */
-class pyramids {
+/*! \brief Class for painting pyramids in OpenGL. */
+class pyramids final {
 public:
 	/*! \brief Data for each pyramid instance. */
 	struct instance {
@@ -49,8 +49,6 @@ public:
 		const std::size_t max_instances,
 		const glm::vec4& color
 	);
-
-	virtual ~pyramids() {}
 
 	// moving is disabled
 	pyramids(pyramids&&) = delete;

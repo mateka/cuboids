@@ -12,7 +12,10 @@ namespace cuboids {
 /*! \brief Class for painting cuboids game. */
 class game_painter : public cuboidslib::ivisitor {
 public:
-	/*! \brief Creates painter. */
+	/*! \brief Creates painter.
+	*   \param worldSize size of game's world.
+	*   \param maxBullets how many bullets can be in the game.
+	*   \param maxCuboids how many cuboids can be in the game. */
 	game_painter(
 		const float worldSize,
 		const std::size_t maxBullets,

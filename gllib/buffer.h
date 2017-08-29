@@ -99,7 +99,7 @@ template<typename Element>
 class buffer final {
 public:
 	using pointer = buffer_data<Element>;	//!< Buffer pointer type
-	using size_type = gl::GLsizeiptr;
+	using size_type = gl::GLsizeiptr;	//!< Buffer size type
 
 	/*! \brief Moves data from other buffer */
 	buffer(buffer&& other)

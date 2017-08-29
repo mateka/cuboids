@@ -29,7 +29,7 @@ public:
 
 	~shader();
 
-	// copying is deleted
+	// copying is disabled
 	shader(const shader&) = delete;
 	shader& operator=(const shader&) = delete;
 private:

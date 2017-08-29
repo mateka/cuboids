@@ -17,7 +17,7 @@ public:
 
 	~vbo();
 
-	// copying is deleted
+	// copying is disabled
 	vbo(const vbo&) = delete;
 	vbo& operator=(const vbo&) = delete;
 

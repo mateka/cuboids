@@ -8,8 +8,8 @@
 
 namespace painterslib {
 
-/*! \brief Base class for painting cuboids in OpenGL. */
-class cuboids {
+/*! \brief Class for painting cuboids in OpenGL. */
+class cuboids final {
 public:
 	/*! \brief Data for each pyramid instance. */
 	struct instance {
@@ -30,8 +30,6 @@ public:
 		const std::size_t max_instances,
 		const glm::vec4& color
 	);
-
-	virtual ~cuboids() {}
 
 	// moving is disabled
 	cuboids(cuboids&&) = delete;

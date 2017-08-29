@@ -15,6 +15,11 @@ namespace cuboidslib {
 /*! \brief Simple bullet */
 class bullet : public projectile {
 public:
+	/*! \brief Creates bullet.
+	*   \param w physics world in which bullet will be registered.
+	*   \param pos starting position of the bullet.
+	*   \param velocity linear velocity of the bullet.
+	*   \param lifeSpan how long bullet will live. */
 	bullet(
 		physicslib::world& w,
 		const glm::vec3& pos,

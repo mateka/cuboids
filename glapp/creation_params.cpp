@@ -59,6 +59,7 @@ void creation_params::handle_glversion() const {
 	if (m_version) {
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, static_cast<int>(m_version->major()));
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, static_cast<int>(m_version->minor()));
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	}
 }
 

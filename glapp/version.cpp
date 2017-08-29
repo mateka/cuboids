@@ -9,7 +9,6 @@ version::version(const std::size_t major, const std::size_t minor, const std::si
 	: m_major{ major }, m_minor{ minor }, m_rev{ rev }
 {}
 
-
 std::size_t version::major() const {
 	return m_major;
 }
@@ -47,7 +46,6 @@ bool operator>(const version& a, const version& b) {
 bool operator>=(const version& a, const version& b) {
 	return !(a < b);
 }
-
 
 std::ostream& operator<<(std::ostream& os, const version& v) {
 	return os << v.major() << "." << v.minor() << "." << v.rev();

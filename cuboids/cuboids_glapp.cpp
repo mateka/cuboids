@@ -1,6 +1,6 @@
 #include <cuboids/cuboids_glapp.h>
-#include <iostream>
 #include <glapp/include_glfw.h>
+#include <iostream>
 #include <chrono>
 
 
@@ -28,7 +28,7 @@ void cuboids_glapp::update(const seconds delta) {
 	if (!m_game->playable())
 		m_game = new_game();
 
-	//std::cout << "FPS: " << 1.0 / delta.count() << std::endl;
+	std::cout << "FPS: " << 1.0 / delta.count() << std::endl;
 }
 
 void cuboids_glapp::handle_input() {
@@ -44,12 +44,16 @@ void cuboids_glapp::handle_input() {
 		m_game->right();
 }
 
-std::unique_ptr<cuboidslib::cuboid_factory> cuboids_glapp::cfactory() {
-	return std::make_unique<cuboidslib::cuboid_factory>(m_randomness(), 2s, m_gameSize, 1.5f);
+std::unique_ptr<cuboidslib::cuboid_factory> cuboids_glapp::cuboids_factory() {
+	return std::make_unique<cuboidslib::cuboid_factory>(
+		m_randomness(), 2s, m_gameSize, 1.5f
+	);
 }
 
 std::unique_ptr<cuboidslib::game> cuboids_glapp::new_game() {
-	return std::make_unique<cuboidslib::game>(m_gameSize, m_shipFactory, cfactory(), 1024, 512);
+	return std::make_unique<cuboidslib::game>(
+		m_gameSize, m_shipFactory, cuboids_factory(), 1024, 512
+	);
 }
 
 }

@@ -42,7 +42,8 @@ void game_painter::update(const float screenRatio, const utils::seconds delta) {
 }
 
 void game_painter::paint(const cuboidslib::game& game) {
-	// paint some fireworks
+	// TODO: paint some fireworks in the background
+
 	game.visit(*this); // paint or gather instances to paint
 
 	// paint cached objects

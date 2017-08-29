@@ -84,6 +84,9 @@
     <ClInclude Include="projectile_collider.h">
       <Filter>Collision Dispatching</Filter>
     </ClInclude>
+    <ClInclude Include="ship_factory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="moving_ship.cpp">
@@ -118,6 +121,9 @@
     </ClCompile>
     <ClCompile Include="projectile_collider.cpp">
       <Filter>Collision Dispatching</Filter>
+    </ClCompile>
+    <ClCompile Include="ship_factory.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

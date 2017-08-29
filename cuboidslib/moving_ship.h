@@ -17,6 +17,11 @@ namespace cuboidslib {
 /*! \brief Moving ship class */
 class moving_ship : public iship {
 public:
+	/*! \brief Creates ship, which slides left or right.
+	*   \param w physics world in which bullet will be registered.
+	*   \param size size of the ship.
+	*   \param pos starting position of the ship.
+	*   \param speed how fast ship can move. */
 	moving_ship(
 		physicslib::world& w,
 		const float size,

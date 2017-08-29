@@ -16,6 +16,12 @@ namespace cuboidslib {
 /*! \brief Class for cuboids game. */
 class game final {
 public:
+	/*! \brief Creates new game.
+	*   \param worldSize size of the world simulation.
+	*   \param ship_factory object for creating new ship.
+	*   \param cuboids_factory object for creating new cuboids.
+	*   \param maxBullets how many bullets can be in the simulation.
+	*   \param maxCuboids how many cuboids can be in the simulation.*/
 	game(
 		const float worldSize,
 		iship_factory& ship_factory,

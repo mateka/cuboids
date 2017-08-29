@@ -10,7 +10,12 @@ namespace cuboidslib {
 /*! \brief Cuboid object */
 class cuboid : public icuboid {
 public:
-	/*! \brief Creates cuboid. */
+	/*! \brief Creates cuboid.
+	*   \param w physics world in which cuboid will be registered.
+	*   \param pos starting position of the cuboid.
+	*   \param velocity linear velocity of the cuboid.
+	*   \param scale scale of the cuboid.
+	*   \param rotation angular velocity of the cuboid. */
 	cuboid(
 		physicslib::world& w,
 		const glm::vec3& pos,

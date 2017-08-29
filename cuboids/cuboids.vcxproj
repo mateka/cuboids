@@ -22,7 +22,6 @@
     <ClCompile Include="cuboids_glapp.cpp" />
     <ClCompile Include="game_painter.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ship_factory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\cuboidslib\cuboidslib.vcxproj">
@@ -47,7 +46,6 @@
   <ItemGroup>
     <ClInclude Include="cuboids_glapp.h" />
     <ClInclude Include="game_painter.h" />
-    <ClInclude Include="ship_factory.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -133,7 +131,8 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -148,7 +147,8 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

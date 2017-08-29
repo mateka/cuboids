@@ -10,7 +10,9 @@ namespace cuboidslib {
 /*! \brief Class for handling collisions with cuboid and something. */
 class cuboid_collider : public imutable_visitor {
 public:
-	/*! \brief Memorizes game and cuboid objects. */
+	/*! \brief Memorizes game and cuboid objects.
+	*   \param g game in which collision happened.
+	*   \param cuboid cuboid colliding with some object.*/
 	cuboid_collider(game& g, icuboid& cuboid);
 
 	/*! \brief Visits ship. */

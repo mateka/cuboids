@@ -6,10 +6,6 @@
 
 namespace physicslib {
 
-body::~body() {
-	m_world.remove_body(*this);
-}
-
 body::body(
 	world& w,
 	const float mass,
@@ -56,6 +52,10 @@ body::body(
 )
 	: body{ w, 0.0f, shape, startPosition }
 {}
+
+body::~body() {
+	m_world.remove_body(*this);
+}
 
 void body::constrain_movement(const bool x, const bool y, const bool z) {
 	auto b2f = [](const bool b) { return b ? 1.0f : 0.0f; };

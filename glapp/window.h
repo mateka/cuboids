@@ -20,7 +20,8 @@ public:
 /*! \brief Base class for OpenGL window. */
 class window final {
 public:
-    /*! \brief Creates window. */
+    /*! \brief Creates window.
+	*   \param params window ang OpenGL context creation parameters. */
     explicit window(const creation_params& params);
     window(window&&) = delete;
     window(const window&) = delete;

@@ -25,15 +25,15 @@ void world::update(const utils::seconds time, const int subSteps) {
 	int numManifolds = m_worldSimulation.getDispatcher()->getNumManifolds();
 	for (int i = 0; i < numManifolds; i++)
 	{
-		btPersistentManifold* contactManifold = m_worldSimulation.getDispatcher()->getManifoldByIndexInternal(i);
-		const btCollisionObject* obA = contactManifold->getBody0();
-		const btCollisionObject* obB = contactManifold->getBody1();
+		auto* contactManifold = m_worldSimulation.getDispatcher()->getManifoldByIndexInternal(i);
+		const auto* obA = contactManifold->getBody0();
+		const auto* obB = contactManifold->getBody1();
 
-		int numContacts = contactManifold->getNumContacts();
+		const auto numContacts = contactManifold->getNumContacts();
 		for (int j = 0; j < numContacts; j++)
 		{
-			btManifoldPoint& pt = contactManifold->getContactPoint(j);
-			if (pt.getDistance() < 0.f)
+			auto& pt = contactManifold->getContactPoint(j);
+			if (pt.getDistance() < 0.0f)
 			{
 				const auto itA = m_bodies.find(obA);
 				const auto itB = m_bodies.find(obB);

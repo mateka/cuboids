@@ -102,7 +102,7 @@ public:
 	*   \return Body's position. */
 	glm::vec3 position() const;
 
-	/*! \brief Returns transform matrix of the body.
+	/*! \brief Returns transform matrix (without scale!) of the body.
 	*   \return Body's transform. */
 	virtual glm::mat4 transform() const;
 

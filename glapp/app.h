@@ -16,7 +16,8 @@ public:
     using seconds = utils::seconds;	//!< Type for update delta
 	using params_type = creation_params;	//!< type of app creation parameters
 
-    /*! \brief Initializes OpenGL libraries and creates window. */
+    /*! \brief Initializes OpenGL libraries and creates window.
+	*   \param params window ang OpenGL context creation parameters. */
     explicit app(const params_type& params);
     app(app&&) = delete;
     app(const app&) = delete;

@@ -9,7 +9,9 @@ namespace cuboidslib {
 /*! \brief Class for dispatching collisions to proper visitors. */
 class collision_dispatcher : public imutable_visitor {
 public:
-	/*! \brief Memorizes game and other object. */
+	/*! \brief Memorizes game and other object.
+	*   \param g game in which collision happened.
+	*   \param other other object colliding with some object.*/
 	collision_dispatcher(game& g, icuboid_object& other);
 
 	/*! \brief Visits ship. */
