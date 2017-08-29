@@ -1,5 +1,6 @@
 #include <painterslib/cuboids.h>
 #include <gllib/shader.h>
+#include "cuboid_geometry.glsl"
 #include "cuboid_vertex.glsl"
 #include "cuboid_fragment.glsl"
 
@@ -13,6 +14,7 @@ cuboids::cuboids(const std::size_t max_instances, const glm::vec4& color)
 		m_vbo.create_buffer<instance>(max_instances, gl::GLenum::GL_ARRAY_BUFFER, gl::GLenum::GL_DYNAMIC_DRAW)
 	}, m_glsl{
 		gllib::shader{ gl::GLenum::GL_VERTEX_SHADER, cuboid::vertex },
+		gllib::shader{ gl::GLenum::GL_GEOMETRY_SHADER, cuboid::geometry },
 		gllib::shader{ gl::GLenum::GL_FRAGMENT_SHADER, cuboid::fragment }
 	}
 {

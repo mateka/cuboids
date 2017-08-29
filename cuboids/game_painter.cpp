@@ -24,7 +24,7 @@ game_painter::game_painter(
 	m_cuboidsPainter{ maxCuboids, glm::vec4{ 0.65f, 0.65f, 0.65f, 1 } },
 	m_worldSize(worldSize)
 {
-	gl::glClearColor(0, 0, 0, 1.0f);
+	gl::glClearColor(0, 0, 0, 0);
 }
 
 void game_painter::update(const float screenRatio, const utils::seconds delta) {

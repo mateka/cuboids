@@ -180,8 +180,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="cuboid_fragment.glsl" />
+    <None Include="cuboid_geometry.glsl" />
     <None Include="cuboid_vertex.glsl" />
     <None Include="pyramid_fragment.glsl" />
+    <None Include="pyramid_geometry.glsl" />
     <None Include="pyramid_vertex.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

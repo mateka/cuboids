@@ -1,6 +1,7 @@
 #include <painterslib/pyramids.h>
 #include <gllib/shader.h>
 #include "pyramid_vertex.glsl"
+#include "pyramid_geometry.glsl"
 #include "pyramid_fragment.glsl"
 
 
@@ -20,6 +21,7 @@ pyramids::pyramids(
 		m_vbo.create_buffer<instance>(max_instances, gl::GLenum::GL_ARRAY_BUFFER, gl::GLenum::GL_DYNAMIC_DRAW)
 	}, m_glsl {
 		gllib::shader{ gl::GLenum::GL_VERTEX_SHADER, pyramid::vertex },
+		gllib::shader{ gl::GLenum::GL_GEOMETRY_SHADER, pyramid::geometry },
 		gllib::shader{ gl::GLenum::GL_FRAGMENT_SHADER, pyramid::fragment }
 	}
 {
