@@ -13,12 +13,12 @@ bullet::bullet(
 	const seconds lifeSpan
 )
 	: projectile{ lifeSpan },
-	m_body{ w.create_dynamic_box(0.1f,{ 0.1f, 0.1f, 0.2f },{ pos[0], pos[1], pos[2] }) }
+	m_body{ w.create_dynamic_box(0.1f,{ 0.1f, 0.1f, 0.2f },{ pos.x, pos.y, pos.z }) }
 {
 	m_body->constrain_movement(true, false, true); // Bullet can only move on xz plane
 	m_body->constrain_rotation(false, false, true); // Bullet can only rotate around z axis
 
-	m_body->velocity({ velocity[0], velocity[1], velocity[2] });
+	m_body->velocity({ velocity.x, velocity.y, velocity.z });
 	m_body->angular_velocity({0, 0, 2.0f * velocity.length()});
 }
 
@@ -27,8 +27,7 @@ void bullet::visit(ivisitor& v) const {
 }
 
 glm::mat4 bullet::transform() const {
-	static const auto scale = glm::scale(glm::mat4(), glm::vec3{ 0.2, 0.2, 0.4 });
-	return m_body->transform() * scale;
+	return m_body->transform();
 }
 
 }

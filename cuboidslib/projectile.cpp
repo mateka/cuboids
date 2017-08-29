@@ -10,8 +10,16 @@ void projectile::update(const seconds delta) {
 	m_lived += delta;
 }
 
+seconds projectile::life_span() const {
+	return m_lifeSpan;
+}
+
+seconds projectile::lived() const {
+	return m_lived;
+}
+
 bool projectile::alive() const {
-	return m_lived < m_lifeSpan;
+	return lived() < life_span();
 }
 
 }

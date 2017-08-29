@@ -168,9 +168,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bullet.h" />
+    <ClInclude Include="cuboid.h" />
+    <ClInclude Include="cuboid_factory.h" />
     <ClInclude Include="default_gun.h" />
     <ClInclude Include="error.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="icuboid.h" />
+    <ClInclude Include="icuboid_factory.h" />
     <ClInclude Include="icuboid_object.h" />
     <ClInclude Include="iprojectile.h" />
     <ClInclude Include="iprojectile_factory.h" />
@@ -182,6 +186,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bullet.cpp" />
+    <ClCompile Include="cuboid.cpp" />
+    <ClCompile Include="cuboid_factory.cpp" />
     <ClCompile Include="default_gun.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="projectile.cpp" />

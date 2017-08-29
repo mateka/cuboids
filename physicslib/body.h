@@ -2,6 +2,7 @@
 
 #include <physicslib/include_bullet.h>
 #include <glm/mat4x4.hpp>
+#include <glm/vec3.hpp>
 
 
 namespace physicslib {
@@ -91,9 +92,25 @@ public:
 	*   \param v angular velocity of the body. */
 	void angular_velocity(const btVector3& v);
 
+	/*! \brief Sets body's position.
+	*   \param pos body's position. */
+	void position(const glm::vec3& pos);
+
+	/*! \brief Returns body's position.
+	*   \return Body's position. */
+	glm::vec3 position() const;
+
 	/*! \brief Returns transform matrix of the body.
 	*   \return Body's transform. */
-	glm::mat4 transform() const;
+	virtual glm::mat4 transform() const;
+
+	/*! \brief Restitution accessor.
+	*   \return Restitution of the body. */
+	float restitution() const;
+
+	/*! \brief Restitution setter.
+	*   \param v restitution of the body. */
+	void restitution(const float r);
 private:
 	btDiscreteDynamicsWorld& m_world;
 	btDefaultMotionState m_motionState;

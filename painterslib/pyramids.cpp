@@ -25,28 +25,28 @@ pyramids::pyramids(
 {
 	const std::array<vertex, 18> data{
 		// top
-		vertex{ { 0.0f, 0.0f, 0.0f }, apex },
-		vertex{ { -0.5f, 0.5f, 1.0f }, left_top },
-		vertex{ { 0.5f, 0.5f, 1.0f }, right_top },
+		vertex{ { 0.0f, 0.0f, -0.5f }, apex },
+		vertex{ { -0.5f, 0.5f, 0.5f }, left_top },
+		vertex{ { 0.5f, 0.5f, 0.5f }, right_top },
 		// right
-		vertex{ { 0.0f, 0.0f, 0.0f }, apex },
-		vertex{ { 0.5f, 0.5f, 1.0f }, right_top },
-		vertex{ { 0.5f, -0.5f, 1.0f }, right_bottom },
+		vertex{ { 0.0f, 0.0f, -0.5f }, apex },
+		vertex{ { 0.5f, 0.5f, 0.5f }, right_top },
+		vertex{ { 0.5f, -0.5f, 0.5f }, right_bottom },
 		// bottom
-		vertex{ { 0.0f, 0.0f, 0.0f }, apex },
-		vertex{ { -0.5f, -0.5f, 1.0f }, left_bottom },
-		vertex{ { 0.5f, -0.5f, 1.0f }, right_bottom },
+		vertex{ { 0.0f, 0.0f, -0.5f }, apex },
+		vertex{ { -0.5f, -0.5f, 0.5f }, left_bottom },
+		vertex{ { 0.5f, -0.5f, 0.5f }, right_bottom },
 		// left
-		vertex{ { 0.0f, 0.0f, 0.0f }, apex },
-		vertex{ { -0.5f, -0.5f, 1.0f }, left_bottom },
-		vertex{ { -0.5f, 0.5f, 1.0f }, left_top },
+		vertex{ { 0.0f, 0.0f, -0.5f }, apex },
+		vertex{ { -0.5f, -0.5f, 0.5f }, left_bottom },
+		vertex{ { -0.5f, 0.5f, 0.5f }, left_top },
 		// back of the ship
-		vertex{ { -0.5f, 0.5f, 1.0f }, left_top },
-		vertex{ { -0.5f, -0.5f, 1.0f }, left_bottom },
-		vertex{ { 0.5f, 0.5f, 1.0f }, right_top },
-		vertex{ { 0.5f, -0.5f, 1.0f }, right_bottom },
-		vertex{ { 0.5f, 0.5f, 1.0f }, right_top },
-		vertex{ { -0.5f, -0.5f, 1.0f }, left_bottom }
+		vertex{ { -0.5f, 0.5f, 0.5f }, left_top },
+		vertex{ { -0.5f, -0.5f, 0.5f }, left_bottom },
+		vertex{ { 0.5f, 0.5f, 0.5f }, right_top },
+		vertex{ { 0.5f, -0.5f, 0.5f }, right_bottom },
+		vertex{ { 0.5f, 0.5f, 0.5f }, right_top },
+		vertex{ { -0.5f, -0.5f, 0.5f }, left_bottom }
 	};
 
 	std::copy(

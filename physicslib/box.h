@@ -2,6 +2,7 @@
 
 #include <physicslib/include_bullet.h>
 #include <physicslib/body.h>
+#include <glm/mat4x4.hpp>
 
 
 namespace physicslib {
@@ -70,6 +71,14 @@ public:
 		const btVector3& size,
 		const btVector3& startPosition
 	);
+
+	/*! \brief Calculates scale transform used on this box.
+	*   \return Box's scale transform. */
+	glm::mat4 scale() const;
+
+	/*! \brief Returns transform matrix of the body.
+	*   \return Body's transform. */
+	glm::mat4 transform() const override;
 private:
 	friend class world;
 };

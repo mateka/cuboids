@@ -21,7 +21,7 @@ default_gun::create(physicslib::world& w, const glm::vec3& pos) {
 	std::vector<std::unique_ptr<iprojectile>> result;
 	m_cooldown.execute([&result, &w, &pos]() {
 		result.push_back(std::make_unique<bullet>(
-			w, pos, glm::vec3{ 0, 0, -5.0f }, 15s
+			w, pos, glm::vec3{ 0, 0, -5.0f }, 2s
 		));
 	});
 	return result;

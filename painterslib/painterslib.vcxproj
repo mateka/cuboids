@@ -171,12 +171,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cuboids.h" />
     <ClInclude Include="pyramids.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="cuboids.cpp" />
     <ClCompile Include="pyramids.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="cuboid_fragment.glsl" />
+    <None Include="cuboid_vertex.glsl" />
     <None Include="pyramid_fragment.glsl" />
     <None Include="pyramid_vertex.glsl" />
   </ItemGroup>

@@ -2,19 +2,19 @@
 
 #include <array>
 #include <vector>
-#include <cuboidslib/icuboid_object.h>
 #include <cuboidslib/iship.h>
 #include <cuboidslib/iprojectile.h>
 #include <cuboidslib/iship_factory.h>
+#include <cuboidslib/icuboid_factory.h>
 #include <physicslib/world.h>
 
 
 namespace cuboidslib {
 
 /*! \brief Class for cuboids game. */
-class game final : public icuboid_object {
+class game final {
 public:
-	game(const float worldSize, iship_factory& ship_factory);
+	game(const float worldSize, iship_factory& ship_factory, std::unique_ptr<icuboid_factory> cuboids_factory);
 
 	// moving is disabled
 	game(game&&) = delete;
@@ -30,7 +30,7 @@ public:
 
 	/*! \brief Test if game is still playable.
 	*   \return true if player has not collided with cuboid. */
-	bool alive() const;
+	bool playable() const;
 
 	/*! \brief Move ship to the left. */
 	void left();
@@ -42,17 +42,20 @@ public:
 	void shot();
 
 	/*! \brief Update object state.
+	*   \param screenRatio window's dimensions ratio.
 	*   \param delta time from last update. */
-	void update(const seconds delta) override;
+	void update(const float screenRatio, const seconds delta);
 
 	/*! \brief Visits game world.
 	*   \param v visitor object. */
-	void visit(ivisitor& v) const override;
+	void visit(ivisitor& v) const;
 private:
 	physicslib::world m_world;
 	std::array<std::unique_ptr<physicslib::box>, 2> m_walls;
 	std::unique_ptr<iship> m_player;
+	std::unique_ptr<icuboid_factory> m_cuboidsFactory;
 	std::vector<std::unique_ptr<iprojectile>> m_bullets;
+	std::vector<std::unique_ptr<icuboid>> m_cuboids;
 	float m_worldSize;
 };
 

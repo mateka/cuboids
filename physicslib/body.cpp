@@ -84,6 +84,22 @@ void body::angular_velocity(const btVector3& v) {
 	m_rigidBody.setAngularVelocity(v);
 }
 
+void body::position(const glm::vec3& pos) {
+	btTransform transform;
+	m_rigidBody.getMotionState()->getWorldTransform(transform);
+	transform.setOrigin({ pos.x, pos.y, pos.z });
+
+	m_rigidBody.setWorldTransform(transform);
+	m_rigidBody.getMotionState()->setWorldTransform(transform);
+}
+
+glm::vec3 body::position() const {
+	btTransform transform;
+	m_motionState.getWorldTransform(transform);
+	const auto pos = transform.getOrigin();
+	return { pos.x(), pos.y(), pos.z() };
+}
+
 glm::mat4 body::transform() const {
 	btTransform transform;
 	m_motionState.getWorldTransform(transform);
@@ -96,6 +112,14 @@ glm::mat4 body::transform() const {
 		components[8], components[9], components[10], components[11],
 		components[12], components[13], components[14], components[15]
 	};
+}
+
+float body::restitution() const {
+	return static_cast<float>(m_rigidBody.getRestitution());
+}
+
+void body::restitution(const float r) {
+	m_rigidBody.setRestitution(r);
 }
 
 }

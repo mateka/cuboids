@@ -47,10 +47,6 @@ public:
 	*   \return Collection of projectile objects. */
 	std::vector<std::unique_ptr<iprojectile>> shot(physicslib::world& w) override;
 
-	/*! \brief Ship's size accessor.
-	*   \return Size of the ship. */
-	float size() const;
-
 	/*! \brief Returns model matrix of the ship.
 	*   \return Ship's body transform. */
 	glm::mat4 transform() const;
@@ -59,7 +55,6 @@ private:
 	iprojectile_factory* m_gun;
 	std::unique_ptr<physicslib::box> m_body;
 	glm::vec3 m_gunPosition;
-	float m_size;
 	float m_speed;
 };
 

@@ -3,8 +3,8 @@
 #include <cuboidslib/ivisitor.h>
 #include <cuboidslib/game.h>
 #include <utils/seconds.h>
-#include <glapp/resolution.h>
 #include <painterslib/pyramids.h>
+#include <painterslib/cuboids.h>
 
 
 namespace cuboids {
@@ -16,9 +16,9 @@ public:
 	game_painter(const float worldSize);
 
 	/*! \brief Update painter's state.
-	*   \param res windows resolution.
+	*   \param screenRatio window's dimensions ratio.
 	*   \param delta time from last update. */
-	void update(const glapp::resolution& res, const utils::seconds delta);
+	void update(const float screenRatio, const utils::seconds delta);
 
 	/*! \brief Paints whole game.
 	*   \param game game to paint. */
@@ -29,12 +29,17 @@ public:
 
 	/*! \brief Visits bullet. */
 	void on_visit(const cuboidslib::bullet&) override;
+
+	/*! \brief Visits cuboid. */
+	void on_visit(const cuboidslib::cuboid&) override;
 private:
 	// painters
 	painterslib::pyramids m_shipPainter;
 	painterslib::pyramids m_bulletsPainter;
+	painterslib::cuboids m_cuboidsPainter;
 	// cached instances to paint
 	std::vector<painterslib::pyramids::instance> m_bullets;
+	std::vector<painterslib::cuboids::instance> m_cuboids;
 	// other
 	glm::mat4 m_pv;
 	float m_worldSize;

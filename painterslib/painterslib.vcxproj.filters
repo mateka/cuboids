@@ -24,14 +24,26 @@
     <None Include="pyramid_fragment.glsl">
       <Filter>Shader Files</Filter>
     </None>
+    <None Include="cuboid_fragment.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="cuboid_vertex.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pyramids.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cuboids.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pyramids.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cuboids.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

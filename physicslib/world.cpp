@@ -35,7 +35,7 @@ void world::update(const utils::seconds time, const int subSteps) {
 			{
 				const btVector3& ptA = pt.getPositionWorldOnA();
 				const btVector3& ptB = pt.getPositionWorldOnB();
-				std::cout << "Collision: " << ptA.x() << "," << ptA.y() << "," << ptA.z() << std::endl;
+				//std::cout << "Collision: " << ptA.x() << "," << ptA.y() << "," << ptA.z() << std::endl;
 			}
 		}
 	}

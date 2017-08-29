@@ -1,6 +1,7 @@
 #include <cuboids/game_painter.h>
 #include <cuboidslib/moving_ship.h>
 #include <cuboidslib/bullet.h>
+#include <cuboidslib/cuboid.h>
 #include <gllib/gl.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -15,21 +16,16 @@ game_painter::game_painter(const float worldSize)
 		glm::vec4{1, 0, 0, 1}, glm::vec4{1, 1, 0, 1},
 		glm::vec4{0, 1, 0, 1}, glm::vec4{0, 0, 1, 1}
 	},
-	m_bulletsPainter{512, glm::vec4{ 0.85f, 0, 0, 1 } },
+	m_bulletsPainter{ 512, glm::vec4{ 0.85f, 0.65f, 0, 1 } },
+	m_cuboidsPainter{ 512, glm::vec4{ 0.65f, 0.65f, 0.65f, 1 } },
 	m_worldSize(worldSize)
 {
-	gl::glClearColor(0, 0, 0.5f, 1.0f);
+	gl::glClearColor(0, 0, 0, 1.0f);
 }
 
-void game_painter::update(const glapp::resolution& res, const utils::seconds delta) {
-	/*const auto projection = glm::perspective(
-		glm::radians(45.0f),
-		res.width() / float(res.height()),
-		0.1f, 100.0f
-	);*/
-	const auto ratio = res.width() / float(res.height());
+void game_painter::update(const float screenRatio, const utils::seconds delta) {
 	const auto projection = glm::ortho(
-		ratio * -m_worldSize, ratio * m_worldSize,
+		screenRatio * -m_worldSize, screenRatio * m_worldSize,
 		-m_worldSize, m_worldSize,
 		0.1f, 100.0f
 	);
@@ -38,6 +34,7 @@ void game_painter::update(const glapp::resolution& res, const utils::seconds del
 
 	m_shipPainter.update(m_pv, delta);
 	m_bulletsPainter.update(m_pv, delta);
+	m_cuboidsPainter.update(m_pv, delta);
 }
 
 void game_painter::paint(const cuboidslib::game& game) {
@@ -46,17 +43,26 @@ void game_painter::paint(const cuboidslib::game& game) {
 
 	// paint cached objects
 	m_bulletsPainter.paint(m_bullets);
+	m_cuboidsPainter.paint(m_cuboids);
 
+	// clear caches
 	m_bullets.clear();
+	m_cuboids.clear();
 }
 
 void game_painter::on_visit(const cuboidslib::moving_ship& s) {
-	painterslib::pyramids::instance instance{ s.transform() };
-	m_shipPainter.paint({ instance });
+	m_shipPainter.paint({ s.transform() });
 }
 
 void game_painter::on_visit(const cuboidslib::bullet& b) {
-	m_bullets.push_back(b.transform());
+	m_bullets.push_back({
+		b.transform(),
+		1.0f - static_cast<float>(b.lived() / b.life_span())
+	});
+}
+
+void game_painter::on_visit(const cuboidslib::cuboid& c) {
+	m_cuboids.push_back({ c.transform() });
 }
 
 }
