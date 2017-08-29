@@ -16,7 +16,13 @@ namespace cuboidslib {
 /*! \brief Class for cuboids game. */
 class game final {
 public:
-	game(const float worldSize, iship_factory& ship_factory, std::unique_ptr<icuboid_factory> cuboids_factory);
+	game(
+		const float worldSize,
+		iship_factory& ship_factory,
+		std::unique_ptr<icuboid_factory> cuboids_factory,
+		const std::size_t maxBullets,
+		const std::size_t maxCuboids
+	);
 
 	// moving is disabled
 	game(game&&) = delete;
@@ -28,7 +34,15 @@ public:
 
 	/*! \brief Game world size accessor.
 	*   \return Game world size.*/
-	float worldSize() const;
+	float world_size() const;
+
+	/*! \brief Max count of bullets accessor.
+	*   \return Max count of bullets.*/
+	std::size_t max_bullets() const;
+
+	/*! \brief Max count of cuboids accessor.
+	*   \return Max count of cuboids.*/
+	std::size_t max_cuboids() const;
 
 	/*! \brief Test if game is still playable.
 	*   \return true if player has not collided with cuboid. */
@@ -51,6 +65,9 @@ public:
 	/*! \brief Visits game world.
 	*   \param v visitor object. */
 	void visit(ivisitor& v) const;
+
+	/*! \brief Notify game, that player killed one cuboid. */
+	void on_cuboid_killed();
 private:
 	physicslib::world m_world;
 	std::array<std::unique_ptr<physicslib::box>, 2> m_walls;
@@ -60,6 +77,8 @@ private:
 	std::vector<std::unique_ptr<icuboid>> m_cuboids;
 	std::unordered_map<const physicslib::body*, icuboid_object*> m_objects;
 	float m_worldSize;
+	std::size_t m_maxBullets;
+	std::size_t m_maxCuboids;
 };
 
 }

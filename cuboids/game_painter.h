@@ -13,7 +13,11 @@ namespace cuboids {
 class game_painter : public cuboidslib::ivisitor {
 public:
 	/*! \brief Creates painter. */
-	game_painter(const float worldSize);
+	game_painter(
+		const float worldSize,
+		const std::size_t maxBullets,
+		const std::size_t maxCuboids
+	);
 
 	/*! \brief Update painter's state.
 	*   \param screenRatio window's dimensions ratio.

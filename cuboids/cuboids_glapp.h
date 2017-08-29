@@ -20,6 +20,9 @@ protected:
 private:
 	void handle_input();
 	std::unique_ptr<cuboidslib::cuboid_factory> cfactory();
+	std::unique_ptr<cuboidslib::game> new_game();
+
+	const float m_gameSize;
 
 	std::random_device m_randomness;
 	ship_factory m_shipFactory;

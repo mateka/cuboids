@@ -12,6 +12,7 @@ projectile_collider::projectile_collider(game& g, iprojectile& projectile)
 void projectile_collider::on_visit(cuboid& c) {
 	m_projectile.die();
 	c.die();
+	m_game.on_cuboid_killed();
 }
 
 }

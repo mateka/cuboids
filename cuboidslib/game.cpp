@@ -47,12 +47,26 @@ void remove_dead_objects(
 	);
 }
 
+template<typename T>
+void remove_oldest_objects(
+	std::vector<std::unique_ptr<T>>& objects,
+	std::unordered_map<const physicslib::body*, icuboid_object*>& objectsMap,
+	const std::size_t maxSize
+) {
+	const auto count = maxSize < objects.size() ? objects.size() - maxSize : 0;
+	for (std::size_t i = 0; i < count; ++i)
+		objects[i]->die();
+	remove_dead_objects(objects, objectsMap);
+}
+
 }
 
 game::game(
 	const float worldSize,
 	iship_factory& ship_factory,
-	std::unique_ptr<icuboid_factory> cuboids_factory
+	std::unique_ptr<icuboid_factory> cuboids_factory,
+	const std::size_t maxBullets,
+	const std::size_t maxCuboids
 )
 	: m_world([this](const physicslib::body* a, const physicslib::body* b) -> void {
 		const auto itA = m_objects.find(a);
@@ -63,10 +77,10 @@ game::game(
 	m_player{ ship_factory.create(m_world) },
 	m_cuboidsFactory{ std::move(cuboids_factory) },
 	m_walls{
-		m_world.create_static_box({ 0.5f, 0.5, worldSize },{ -worldSize - 0.5, 0, 0 }),
-		m_world.create_static_box({ 0.5f, 0.5, worldSize },{ worldSize + 0.5, 0, 0 }),
+		m_world.create_static_box({ 0.5f, 0.5, 2 * worldSize },{ -worldSize - 0.5, 0, 0 }),
+		m_world.create_static_box({ 0.5f, 0.5, 2 * worldSize },{ worldSize + 0.5, 0, 0 }),
     },
-	m_worldSize(worldSize)
+	m_worldSize{ worldSize }, m_maxBullets{ maxBullets }, m_maxCuboids{ maxCuboids }
 {
 	m_world.gravity({ 0, 0, 0 });
 	m_walls[0]->restitution(0.5f);
@@ -75,8 +89,16 @@ game::game(
 	m_objects[m_player->body()] = m_player.get();
 }
 
-float game::worldSize() const {
+float game::world_size() const {
 	return m_worldSize;
+}
+
+std::size_t game::max_bullets() const {
+	return m_maxBullets;
+}
+
+std::size_t game::max_cuboids() const {
+	return m_maxCuboids;
 }
 
 bool game::playable() const {
@@ -111,7 +133,9 @@ void game::update(const float screenRatio, const seconds delta) {
 	// Remove dead entities
 	remove_dead_objects(m_bullets, m_objects);
 	remove_dead_objects(m_cuboids, m_objects);
-	// Remove objects, when there is too many
+	// Remove oldest objects, when there is too many
+	remove_oldest_objects(m_bullets, m_objects, max_bullets());
+	remove_oldest_objects(m_cuboids, m_objects, max_cuboids());
 }
 
 void game::visit(ivisitor& v) const {
@@ -120,6 +144,10 @@ void game::visit(ivisitor& v) const {
 	for (const auto& b : m_bullets)
 		b->visit(v);
 	m_player->visit(v);
+}
+
+void game::on_cuboid_killed() {
+	m_cuboidsFactory->on_killed();
 }
 
 }

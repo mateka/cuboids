@@ -24,6 +24,9 @@ public:
 	/*! \brief Collection of cuboid objects.
 	*   \param w physics world. */
 	virtual std::vector<std::unique_ptr<icuboid>> create(physicslib::world& w) = 0;
+
+	/*! \brief Notify factory, that player killed one cuboid. */
+	virtual void on_killed() = 0;
 };
 
 }

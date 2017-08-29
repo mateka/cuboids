@@ -9,9 +9,9 @@ using namespace std::chrono_literals;
 namespace cuboids {
 
 cuboids_glapp::cuboids_glapp(const cuboids_glapp::params_type& params)
-	: app{ params }, m_shipFactory{ {0, 0, 5}, 3.0f },
-	m_game{ std::make_unique<cuboidslib::game>(6.0f, m_shipFactory, cfactory()) },
-	m_painter{ m_game->worldSize() }
+	: app{ params }, m_gameSize{ 6.0f }, m_shipFactory{ {0, 0, 5}, 3.0f },
+	m_game{ new_game() },
+	m_painter{ m_gameSize, m_game->max_bullets(), m_game->max_cuboids() }
 {
 	std::cout << "OpenGL version: " << glversion() << std::endl;
 }
@@ -26,7 +26,7 @@ void cuboids_glapp::update(const seconds delta) {
 	m_painter.paint(*m_game);
 
 	if (!m_game->playable())
-		m_game = std::make_unique<cuboidslib::game>(6.0f, m_shipFactory, cfactory());
+		m_game = new_game();
 
 	//std::cout << "FPS: " << 1.0 / delta.count() << std::endl;
 }
@@ -45,7 +45,11 @@ void cuboids_glapp::handle_input() {
 }
 
 std::unique_ptr<cuboidslib::cuboid_factory> cuboids_glapp::cfactory() {
-	return std::make_unique<cuboidslib::cuboid_factory>(m_randomness(), 2s);
+	return std::make_unique<cuboidslib::cuboid_factory>(m_randomness(), 2s, m_gameSize, 1.5f);
+}
+
+std::unique_ptr<cuboidslib::game> cuboids_glapp::new_game() {
+	return std::make_unique<cuboidslib::game>(m_gameSize, m_shipFactory, cfactory(), 1024, 512);
 }
 
 }

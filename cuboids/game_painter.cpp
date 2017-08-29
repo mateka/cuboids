@@ -9,15 +9,19 @@
 
 namespace cuboids {
 
-game_painter::game_painter(const float worldSize)
+game_painter::game_painter(
+	const float worldSize,
+	const std::size_t maxBullets,
+	const std::size_t maxCuboids
+)
 	: m_shipPainter{
 	    2,
 		glm::vec4{1, 1, 1, 1},
 		glm::vec4{1, 0, 0, 1}, glm::vec4{1, 1, 0, 1},
 		glm::vec4{0, 1, 0, 1}, glm::vec4{0, 0, 1, 1}
 	},
-	m_bulletsPainter{ 512, glm::vec4{ 0.85f, 0.65f, 0, 1 } },
-	m_cuboidsPainter{ 512, glm::vec4{ 0.65f, 0.65f, 0.65f, 1 } },
+	m_bulletsPainter{ maxBullets, glm::vec4{ 0.85f, 0.65f, 0, 1 } },
+	m_cuboidsPainter{ maxCuboids, glm::vec4{ 0.65f, 0.65f, 0.65f, 1 } },
 	m_worldSize(worldSize)
 {
 	gl::glClearColor(0, 0, 0, 1.0f);
