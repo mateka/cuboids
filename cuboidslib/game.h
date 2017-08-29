@@ -2,11 +2,13 @@
 
 #include <array>
 #include <vector>
+#include <unordered_map>
 #include <cuboidslib/iship.h>
 #include <cuboidslib/iprojectile.h>
 #include <cuboidslib/iship_factory.h>
 #include <cuboidslib/icuboid_factory.h>
 #include <physicslib/world.h>
+#include <physicslib/body.h>
 
 
 namespace cuboidslib {
@@ -56,8 +58,8 @@ private:
 	std::unique_ptr<icuboid_factory> m_cuboidsFactory;
 	std::vector<std::unique_ptr<iprojectile>> m_bullets;
 	std::vector<std::unique_ptr<icuboid>> m_cuboids;
+	std::unordered_map<const physicslib::body*, icuboid_object*> m_objects;
 	float m_worldSize;
 };
 
 }
-#pragma once

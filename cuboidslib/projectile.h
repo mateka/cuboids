@@ -28,6 +28,9 @@ public:
 	/*! \brief Test if projectile is alive.
 	*   \return true if projective lived less than its life span. */
 	bool alive() const override;
+
+	/*! \brief Kills object. */
+	void die() override;
 private:
 	const seconds m_lifeSpan;
 	seconds m_lived;

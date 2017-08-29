@@ -1,5 +1,6 @@
 #include <cuboidslib/bullet.h>
 #include <cuboidslib/ivisitor.h>
+#include <cuboidslib/imutable_visitor.h>
 #include <physicslib/world.h>
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -22,8 +23,16 @@ bullet::bullet(
 	m_body->angular_velocity({0, 0, 2.0f * velocity.length()});
 }
 
+void bullet::visit(imutable_visitor& v)  {
+	v.on_visit(*this);
+}
+
 void bullet::visit(ivisitor& v) const {
 	v.on_visit(*this);
+}
+
+const physicslib::body* bullet::body() const {
+	return m_body.get();
 }
 
 glm::mat4 bullet::transform() const {

@@ -7,6 +7,8 @@
 
 namespace physicslib {
 
+class world;
+
 namespace details {
 
 /*! \brief Helper class for storing box shape.
@@ -29,45 +31,45 @@ protected:
 class box : private details::box_shape_holder, public body {
 public:
 	/*! \brief Creates dynamic box.
-	*   \param world physical simulation world.
+	*   \param w physical simulation world.
 	*   \param mass mass of the box.
 	*   \param size half extends of the box.
 	*   \param startTransform starting transform of the box.*/
 	box(
-		btDiscreteDynamicsWorld& world,
+		world& w,
 		const float mass,
 		const glm::vec3& size,
 		const btTransform& startTransform
 	);
 
 	/*! \brief Creates dynamic box.
-	*   \param world physical simulation world.
+	*   \param w physical simulation world.
 	*   \param mass mass of the box.
 	*   \param size half extends of the box.
 	*   \param startTransform starting position of the box.*/
 	box(
-		btDiscreteDynamicsWorld& world,
+		world& w,
 		const float mass,
 		const glm::vec3& size,
 		const glm::vec3& startPosition
 	);
 
 	/*! \brief Creates static box.
-	*   \param world physical simulation world.
+	*   \param w physical simulation world.
 	*   \param size half extends of the box.
 	*   \param startTransform starting transform of the box.*/
 	box(
-		btDiscreteDynamicsWorld& world,
+		world& w,
 		const glm::vec3& size,
 		const btTransform& startTransform
 	);
 
 	/*! \brief Creates static box.
-	*   \param world physical simulation world.
+	*   \param w physical simulation world.
 	*   \param size half extends of the box.
 	*   \param startTransform starting position of the box.*/
 	box(
-		btDiscreteDynamicsWorld& world,
+		world& w,
 		const glm::vec3& size,
 		const glm::vec3& startPosition
 	);

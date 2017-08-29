@@ -1,5 +1,6 @@
 #include <cuboidslib/cuboid.h>
 #include <cuboidslib/ivisitor.h>
+#include <cuboidslib/imutable_visitor.h>
 #include <physicslib/world.h>
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -25,12 +26,25 @@ cuboid::cuboid(
 void cuboid::update(const seconds delta) {
 }
 
+void cuboid::visit(imutable_visitor& v) {
+	v.on_visit(*this);
+}
+
 void cuboid::visit(ivisitor& v) const {
 	v.on_visit(*this);
 }
 
 bool cuboid::alive() const {
 	return m_body->position().z < 10.0f;
+}
+
+void cuboid::die() {
+	const auto pos = m_body->position();
+	m_body->position({ pos.x, pos.y, 100.0f });
+}
+
+const physicslib::body* cuboid::body() const {
+	return m_body.get();
 }
 
 glm::mat4 cuboid::transform() const {

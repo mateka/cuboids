@@ -1,4 +1,5 @@
 #include <physicslib/body.h>
+#include <physicslib/world.h>
 #include <limits>
 #include <array>
 
@@ -6,16 +7,16 @@
 namespace physicslib {
 
 body::~body() {
-	m_world.removeRigidBody(&m_rigidBody);
+	m_world.remove_body(*this);
 }
 
 body::body(
-	btDiscreteDynamicsWorld& world,
+	world& w,
 	const float mass,
 	btCollisionShape& shape,
 	const btTransform& startTransform
 )
-	: m_world{ world }, m_motionState{ startTransform },
+	: m_world{ w }, m_motionState{ startTransform },
 	m_rigidBody{ { mass, &m_motionState, &shape, [mass, &shape]() {
 		btVector3 inertia{0,0,0};
 		if (mass > std::numeric_limits<float>::epsilon())
@@ -23,16 +24,16 @@ body::body(
 		return inertia;
 	}()} }
 {
-	m_world.addRigidBody(&m_rigidBody);
+	m_world.add_body(*this);
 }
 
 body::body(
-	btDiscreteDynamicsWorld& world,
+	world& w,
 	const float mass,
 	btCollisionShape& shape,
 	const glm::vec3& startPosition
 )
-	: body{ world, mass, shape, [&startPosition]() {
+	: body{ w, mass, shape, [&startPosition]() {
 		btTransform startTransform;
 		startTransform.setIdentity();
 		startTransform.setOrigin({ startPosition.x, startPosition.y, startPosition.z });
@@ -41,19 +42,19 @@ body::body(
 {}
 
 body::body(
-	btDiscreteDynamicsWorld& world,
+	world& w,
 	btCollisionShape& shape,
 	const btTransform& startTransform
 )
-	: body{ world, 0.0f, shape, startTransform }
+	: body{ w, 0.0f, shape, startTransform }
 {}
 
 body::body(
-	btDiscreteDynamicsWorld& world,
+	world& w,
 	btCollisionShape& shape,
 	const glm::vec3& startPosition
 )
-	: body{ world, 0.0f, shape, startPosition }
+	: body{ w, 0.0f, shape, startPosition }
 {}
 
 void body::constrain_movement(const bool x, const bool y, const bool z) {

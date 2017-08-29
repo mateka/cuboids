@@ -25,11 +25,22 @@ public:
 
 	/*! \brief visitor pattern - visiting this object.
 	*   \param v visitor object.*/
+	void visit(imutable_visitor& v) override;
+
+	/*! \brief visitor pattern - visiting this object.
+	*   \param v visitor object.*/
 	void visit(ivisitor& v) const override;
 
 	/*! \brief Test if cuboid is alive.
 	*   \return true if cuboid is on game screen.*/
 	bool alive() const override;
+
+	/*! \brief Kills object. */
+	void die() override;
+
+	/*! \brief Obtains physics body from cuboid.
+	*   \return Body associated with cuboid. */
+	const physicslib::body* body() const override;
 
 	/*! \brief Returns model matrix of the ship.
 	*   \return Ship's body transform. */

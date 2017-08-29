@@ -1,6 +1,7 @@
 #pragma once
 
 #include <utils/seconds.h>
+#include <physicslib/body.h>
 
 
 namespace cuboidslib {
@@ -8,6 +9,7 @@ namespace cuboidslib {
 using seconds = utils::seconds; //!< Type for seconds count with fractional part
 
 class ivisitor;
+class imutable_visitor;
 
 /*! \brief Base class for all cuboids lib objects. */
 class icuboid_object {
@@ -29,11 +31,22 @@ public:
 
 	/*! \brief visitor pattern - visiting this object.
 	*   \param v visitor object.*/
+	virtual void visit(imutable_visitor& v) = 0;
+
+	/*! \brief visitor pattern - visiting this object.
+	*   \param v visitor object.*/
 	virtual void visit(ivisitor& v) const = 0;
 
 	/*! \brief Checks if object is alive (dead should be destroyed).
 	*   \return true if object should stay in game. */
 	virtual bool alive() const = 0;
+
+	/*! \brief Kills object. */
+	virtual void die() = 0;
+
+	/*! \brief Obtains physics body from cuboid.
+	*   \return Body associated with cuboid. */
+	virtual const physicslib::body* body() const = 0;
 };
 
 }

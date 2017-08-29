@@ -7,49 +7,51 @@
 
 namespace physicslib {
 
+class world;
+
 /*! \brief Base class for rigid bodies. */
 class body {
 public:
 	/*! \brief Creates rigid body.
-	*   \param world physical simulation world.
+	*   \param w physical simulation world.
 	*   \param mass mass of the body (0 - body is static).
 	*   \param shape collision shape of the body.
 	*   \param startTransform starting transform of the body. */
 	body(
-		btDiscreteDynamicsWorld& world,
+		world& w,
 		const float mass,
 		btCollisionShape& shape,
 		const btTransform& startTransform
 	);
 
 	/*! \brief Creates rigid body.
-	*   \param world physical simulation world.
+	*   \param w physical simulation world.
 	*   \param mass mass of the body (0 - body is static).
 	*   \param shape collision shape of the body.
 	*   \param startPosition starting position of the body. */
 	body(
-		btDiscreteDynamicsWorld& world,
+		world& w,
 		const float mass,
 		btCollisionShape& shape,
 		const glm::vec3& startPosition
 	);
 
 	/*! \brief Creates static rigid body.
-	*   \param world physical simulation world.
+	*   \param w physical simulation world.
 	*   \param shape collision shape of the body.
 	*   \param startTransform starting transform of the body. */
 	body(
-		btDiscreteDynamicsWorld& world,
+		world& w,
 		btCollisionShape& shape,
 		const btTransform& startTransform
 	);
 
 	/*! \brief Creates static rigid body.
-	*   \param world physical simulation world.
+	*   \param w physical simulation world.
 	*   \param shape collision shape of the body.
 	*   \param startPosition starting position of the body. */
 	body(
-		btDiscreteDynamicsWorld& world,
+		world& w,
 		btCollisionShape& shape,
 		const glm::vec3& startPosition
 	);
@@ -112,7 +114,9 @@ public:
 	*   \param v restitution of the body. */
 	void restitution(const float r);
 private:
-	btDiscreteDynamicsWorld& m_world;
+	friend class world;
+
+	world& m_world;
 	btDefaultMotionState m_motionState;
 	btRigidBody m_rigidBody;
 };

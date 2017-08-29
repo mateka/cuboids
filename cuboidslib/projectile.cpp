@@ -1,4 +1,8 @@
 #include <cuboidslib/projectile.h>
+#include <chrono>
+
+
+using namespace std::chrono_literals;
 
 namespace cuboidslib {
 
@@ -20,6 +24,10 @@ seconds projectile::lived() const {
 
 bool projectile::alive() const {
 	return lived() < life_span();
+}
+
+void projectile::die() {
+	m_lived = life_span() + 3600s;
 }
 
 }

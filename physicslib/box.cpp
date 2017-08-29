@@ -1,43 +1,44 @@
 #include <physicslib/box.h>
+#include <physicslib/world.h>
 #include <glm/gtc/matrix_transform.hpp>
 
 
 namespace physicslib {
 
 box::box(
-	btDiscreteDynamicsWorld& world,
+	world& w,
 	const float mass,
 	const glm::vec3& size,
 	const btTransform& startTransform
 )
 	: box_shape_holder{ size },
-	body { world, mass, m_shape, startTransform }
+	body { w, mass, m_shape, startTransform }
 {}
 
 box::box(
-	btDiscreteDynamicsWorld& world,
+	world& w,
 	const float mass,
 	const glm::vec3& size,
 	const glm::vec3& startPosition
 )
 	: box_shape_holder{ size },
-	body{ world, mass, m_shape, startPosition }
+	body{ w, mass, m_shape, startPosition }
 {}
 
 box::box(
-	btDiscreteDynamicsWorld& world,
+	world& w,
 	const glm::vec3& size,
 	const btTransform& startTransform
 )
-	: box{ world, 0.0f, size, startTransform }
+	: box{ w, 0.0f, size, startTransform }
 {}
 
 box::box(
-	btDiscreteDynamicsWorld& world,
+	world& w,
 	const glm::vec3& size,
 	const glm::vec3& startPosition
 )
-	: box{ world, 0.0f, size, startPosition }
+	: box{ w, 0.0f, size, startPosition }
 {}
 
 /*! \brief Calculates scale transform used on this box.

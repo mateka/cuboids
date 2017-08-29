@@ -30,11 +30,22 @@ public:
 
 	/*! \brief visitor pattern - visiting this object.
 	*   \param v visitor object.*/
+	void visit(imutable_visitor& v) override;
+
+	/*! \brief visitor pattern - visiting this object.
+	*   \param v visitor object.*/
 	void visit(ivisitor& v) const override;
 
 	/*! \brief Checks if object is alive (dead should be destroyed).
 	*   \return true if object should stay in game. */
 	bool alive() const override;
+
+	/*! \brief Kills object. */
+	void die() override;
+
+	/*! \brief Obtains physics body from cuboid.
+	*   \return Body associated with cuboid. */
+	const physicslib::body* body() const override;
 
 	/*! \brief Move ship to the left. */
 	void left() override;
@@ -56,6 +67,7 @@ private:
 	std::unique_ptr<physicslib::box> m_body;
 	glm::vec3 m_gunPosition;
 	float m_speed;
+	bool m_alive;
 };
 
 }

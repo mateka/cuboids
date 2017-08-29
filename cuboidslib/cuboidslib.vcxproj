@@ -168,7 +168,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bullet.h" />
+    <ClInclude Include="projectile_collider.h" />
+    <ClInclude Include="collision_dispatcher.h" />
     <ClInclude Include="cuboid.h" />
+    <ClInclude Include="cuboid_collider.h" />
     <ClInclude Include="cuboid_factory.h" />
     <ClInclude Include="default_gun.h" />
     <ClInclude Include="error.h" />
@@ -176,6 +179,7 @@
     <ClInclude Include="icuboid.h" />
     <ClInclude Include="icuboid_factory.h" />
     <ClInclude Include="icuboid_object.h" />
+    <ClInclude Include="imutable_visitor.h" />
     <ClInclude Include="iprojectile.h" />
     <ClInclude Include="iprojectile_factory.h" />
     <ClInclude Include="iship.h" />
@@ -183,15 +187,20 @@
     <ClInclude Include="moving_ship.h" />
     <ClInclude Include="ivisitor.h" />
     <ClInclude Include="projectile.h" />
+    <ClInclude Include="ship_collider.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bullet.cpp" />
+    <ClCompile Include="projectile_collider.cpp" />
+    <ClCompile Include="collision_dispatcher.cpp" />
     <ClCompile Include="cuboid.cpp" />
+    <ClCompile Include="cuboid_collider.cpp" />
     <ClCompile Include="cuboid_factory.cpp" />
     <ClCompile Include="default_gun.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="projectile.cpp" />
     <ClCompile Include="moving_ship.cpp" />
+    <ClCompile Include="ship_collider.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

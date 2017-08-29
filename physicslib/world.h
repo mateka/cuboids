@@ -1,6 +1,8 @@
 #pragma once
 
 #include <memory>
+#include <functional>
+#include <unordered_map>
 #include <utils/seconds.h>
 #include <physicslib/include_bullet.h>
 #include <physicslib/box.h>
@@ -11,8 +13,13 @@ namespace physicslib {
 /*! \brief Class for simple world for physics simulation. */
 class world final {
 public:
-	/*! \brief Creates simple physics world simulation. */
-	world();
+	/* \brief Type for collision callback. */
+	using collision_callback = std::function<void (const body*, const body*)>;
+
+	/*! \brief Creates simple physics world simulation.
+	*   \brief cc collision callback
+	*/
+	world(collision_callback cc);
 
 	// copying is disabled
 	world(const world&) = delete;
@@ -34,6 +41,14 @@ public:
 	*   \param time step time.
 	*   \param subSteps max number of simulation sub steps (default: 1) */
 	void update(const utils::seconds time, const int subSteps = 1);
+
+	/* \brief Adds physics body to simulation.
+	*  \param b body to add.*/
+	void add_body(body& b);
+
+	/* \brief Removes physics body to simulation.
+	*  \param b body to remove.*/
+	void remove_body(body& b);
 
 	/*! \brief Create dynamic rigid body with cuboid shape.
 	*   \param mass mass of the box.
@@ -77,6 +92,8 @@ private:
 	btDbvtBroadphase m_broadPhaseAlgorithm;
 	btSequentialImpulseConstraintSolver m_solver;
 	btDiscreteDynamicsWorld m_worldSimulation;
+	std::unordered_map<const btCollisionObject*, body*> m_bodies;
+	collision_callback m_collisionCallback;
 };
 
 }

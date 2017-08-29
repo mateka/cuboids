@@ -1,5 +1,6 @@
 #include <cuboidslib/moving_ship.h>
 #include <cuboidslib/ivisitor.h>
+#include <cuboidslib/imutable_visitor.h>
 #include <physicslib/world.h>
 #include <chrono>
 
@@ -17,7 +18,7 @@ moving_ship::moving_ship(
 	: m_defaultGun{500ms}, m_gun {&m_defaultGun},
 	m_body{ w.create_dynamic_box(size, 0.5f * glm::vec3{size, size, size}, pos) },
 	m_gunPosition{0, 0, -0.5},
-	m_speed{ speed }
+	m_speed{ speed }, m_alive{ true }
 {
 	m_body->constrain_movement(true, false, false); // Ship can only move on x axis
 	m_body->constrain_rotation(false, false, true); // Ship can only rotate around z axis
@@ -29,12 +30,24 @@ void moving_ship::update(const seconds delta) {
 	m_gun->update(delta);
 }
 
+void moving_ship::visit(imutable_visitor& v) {
+	v.on_visit(*this);
+}
+
 void moving_ship::visit(ivisitor& v) const {
 	v.on_visit(*this);
 }
 
 bool moving_ship::alive() const {
-	return true;
+	return m_alive;
+}
+
+void moving_ship::die() {
+	m_alive = false;
+}
+
+const physicslib::body* moving_ship::body() const {
+	return m_body.get();
 }
 
 void moving_ship::left() {

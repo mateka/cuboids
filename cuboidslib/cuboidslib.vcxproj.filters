@@ -13,30 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Interfaces">
+      <UniqueIdentifier>{d63ddbfe-688f-4c0d-8892-9a7f26b847eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collision Dispatching">
+      <UniqueIdentifier>{0dededdd-6e6a-440c-b7da-60073fc0c11e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="iship.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="moving_ship.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="icuboid_object.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="iprojectile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="bullet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ivisitor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="iship_factory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="game.h">
@@ -45,16 +36,7 @@
     <ClInclude Include="projectile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="iprojectile_factory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="default_gun.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="icuboid.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="icuboid_factory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cuboid.h">
@@ -62,6 +44,45 @@
     </ClInclude>
     <ClInclude Include="cuboid_factory.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="icuboid.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="icuboid_factory.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="icuboid_object.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="iprojectile.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="iprojectile_factory.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="iship_factory.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="ivisitor.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="collision_dispatcher.h">
+      <Filter>Collision Dispatching</Filter>
+    </ClInclude>
+    <ClInclude Include="imutable_visitor.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="ship_collider.h">
+      <Filter>Collision Dispatching</Filter>
+    </ClInclude>
+    <ClInclude Include="cuboid_collider.h">
+      <Filter>Collision Dispatching</Filter>
+    </ClInclude>
+    <ClInclude Include="iship.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="projectile_collider.h">
+      <Filter>Collision Dispatching</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +106,18 @@
     </ClCompile>
     <ClCompile Include="cuboid_factory.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="collision_dispatcher.cpp">
+      <Filter>Collision Dispatching</Filter>
+    </ClCompile>
+    <ClCompile Include="ship_collider.cpp">
+      <Filter>Collision Dispatching</Filter>
+    </ClCompile>
+    <ClCompile Include="cuboid_collider.cpp">
+      <Filter>Collision Dispatching</Filter>
+    </ClCompile>
+    <ClCompile Include="projectile_collider.cpp">
+      <Filter>Collision Dispatching</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
