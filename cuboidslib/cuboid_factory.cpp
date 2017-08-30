@@ -23,6 +23,7 @@ cuboid_factory::cuboid_factory(
 	m_velocity{ -1, 1 },
 	m_rotation{ -1.5, 1.5 },
 	m_crateDistribution{ 0, 1 },
+	m_gunsDistribution{ 0, 1 },
 	m_killPenalty{ killPenalty }, m_additional{ 0 },
 	m_crateProbability{ crateProbability }
 {}
@@ -49,14 +50,8 @@ void cuboid_factory::on_killed() {
 
 std::unique_ptr<icuboid> cuboid_factory::new_cuboid(physicslib::world& w, const glm::vec3& pos) {
 	const auto draw = m_crateDistribution(m_engine);
-	if (draw < m_crateProbability) {
-		return std::make_unique<crate>(
-			w,
-			pos,
-			glm::vec3{ m_velocity(m_engine), 0, 2.0f },
-			glm::vec3{ m_rotation(m_engine), m_rotation(m_engine), m_rotation(m_engine) }
-		);
-	}
+	if (draw < m_crateProbability)
+		return new_crate(w, pos);
 
 	return std::make_unique<cuboid>(
 		w,
@@ -64,6 +59,21 @@ std::unique_ptr<icuboid> cuboid_factory::new_cuboid(physicslib::world& w, const 
 		glm::vec3{ m_velocity(m_engine), 0, 2.0f },
 		glm::vec3{ m_size(m_engine), m_size(m_engine), m_size(m_engine) },
 		glm::vec3{ m_rotation(m_engine), m_rotation(m_engine), m_rotation(m_engine) }
+	);
+}
+
+std::unique_ptr<icuboid> cuboid_factory::new_crate(physicslib::world& w, const glm::vec3& pos) {
+	const auto draw = m_gunsDistribution(m_engine);
+	auto model = gun_model::spray3;
+	if (draw < 0.15f)
+		model = gun_model::spray5;
+	
+	return std::make_unique<crate>(
+		w,
+		pos,
+		glm::vec3{ m_velocity(m_engine), 0, 2.0f },
+		glm::vec3{ m_rotation(m_engine), m_rotation(m_engine), m_rotation(m_engine) },
+		model
 	);
 }
 

@@ -1,7 +1,8 @@
 #pragma once
 
 #include <cuboidslib/iprojectile_factory.h>
-#include <utils/cooldown_timer.h>
+#include <cuboidslib/default_gun.h>
+#include <vector>
 
 
 namespace physicslib {
@@ -11,16 +12,16 @@ class world;
 namespace cuboidslib {
 
 /*! \brief Default gun. */
-class default_gun : public iprojectile_factory {
+class spray_gun : public iprojectile_factory {
 public:
-	/*! \brief Creates gun, which shots simple bullets with given cooldown.
+	/*! \brief Creates gun, which shots n simple bullets with given cooldown.
 	*   \param cooldown cooldown between two shots.
-	*   \param velocity velocity of bullets (default: { 0, 0, -5.0f }).
-	*   \param lifetime lifetime of bullets (default: 2s). */
-	default_gun(
+	*   \param n number of created bullets.
+	*   \param ammo number of shots before gun will be jammed. */
+	spray_gun(
 		const seconds& cooldown,
-		const glm::vec3& velocity = glm::vec3{ 0, 0, -5.0f },
-		const seconds& lifetime = seconds{2}
+		const std::size_t n,
+		const std::size_t ammo
 	);
 
 	/*! \brief Update object state.
@@ -36,9 +37,9 @@ public:
 	*   \return false, if player can shoot from this gun. */
 	bool jammed() const override;
 private:
-	utils::cooldown_timer m_cooldown;
-	glm::vec3 m_velocity;
-	seconds m_lifetime;
+	std::vector<default_gun> m_guns;
+	std::size_t m_ammo;
 };
 
 }
+#pragma once

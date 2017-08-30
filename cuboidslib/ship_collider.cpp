@@ -16,7 +16,7 @@ void ship_collider::on_visit(cuboid& c) {
 }
 
 void ship_collider::on_visit(crate& c) {
-	//m_ship.visit(crate_collider(m_game, c));
+	m_ship.change_gun(c.gun());
 	c.die();
 }
 

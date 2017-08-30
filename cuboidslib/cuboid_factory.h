@@ -38,6 +38,7 @@ public:
 	void on_killed() override;
 private:
 	std::unique_ptr<icuboid> new_cuboid(physicslib::world& w, const glm::vec3& pos);
+	std::unique_ptr<icuboid> new_crate(physicslib::world& w, const glm::vec3& pos);
 
 	utils::cooldown_timer m_cooldown;
 	std::mt19937_64 m_engine;
@@ -46,6 +47,7 @@ private:
 	std::uniform_real_distribution<float> m_velocity;
 	std::uniform_real_distribution<float> m_rotation;
 	std::uniform_real_distribution<float> m_crateDistribution;
+	std::uniform_real_distribution<float> m_gunsDistribution;
 	float m_killPenalty;
 	float m_additional;
 	float m_crateProbability;
