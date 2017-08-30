@@ -103,6 +103,17 @@ glm::vec3 body::position() const {
 	return { pos.x(), pos.y(), pos.z() };
 }
 
+void body::local_scale(const glm::vec3& scale) {
+	m_rigidBody.getCollisionShape()->
+		setLocalScaling({ scale.x, scale.y, scale.z });
+	m_world.update_aabb(*this);
+}
+
+glm::vec3 body::local_scale() const {
+	const auto s = m_rigidBody.getCollisionShape()->getLocalScaling();
+	return { s.x(), s.y(), s.z() };
+}
+
 glm::mat4 body::transform() const {
 	btTransform transform;
 	m_motionState.getWorldTransform(transform);

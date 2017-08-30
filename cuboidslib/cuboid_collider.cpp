@@ -22,7 +22,14 @@ void cuboid_collider::on_visit(bullet& b) {
 }
 
 void cuboid_collider::on_visit(rocket& r) {
+	const auto pos = r.position();
+	const auto size = r.size();
 	m_cuboid.visit(projectile_collider{ m_game, r });
+	m_game.explode(pos, size);
+}
+
+void cuboid_collider::on_visit(explosion&) {
+	m_cuboid.die();
 }
 
 }

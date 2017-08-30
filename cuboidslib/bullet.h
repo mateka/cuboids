@@ -41,9 +41,13 @@ public:
 	*   \return Body associated with cuboid. */
 	const physicslib::body* body() const override;
 
-	/*! \brief Returns model matrix of the ship.
-	*   \return Ship's body transform. */
+	/*! \brief Returns model matrix of the bullet.
+	*   \return Bullet's body transform. */
 	glm::mat4 transform() const;
+
+	/*! \brief Returns position of the bullet.
+	*   \return Bullet's position. */
+	glm::vec3 position() const;
 private:
 	std::unique_ptr<physicslib::box> m_body;
 };

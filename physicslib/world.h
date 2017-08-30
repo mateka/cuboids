@@ -50,6 +50,10 @@ public:
 	*  \param b body to remove.*/
 	void remove_body(body& b);
 
+	/* \brief Updates body bounding box.
+	*  \param b body for which aabb should be updated.*/
+	void update_aabb(body& b);
+
 	/*! \brief Create dynamic rigid body with cuboid shape.
 	*   \param mass mass of the box.
 	*   \param size half extends of the box.

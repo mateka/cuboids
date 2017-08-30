@@ -55,6 +55,10 @@ void world::remove_body(body& b) {
 	m_bodies.erase(&b.m_rigidBody);
 }
 
+void world::update_aabb(body& b) {
+	m_worldSimulation.updateSingleAabb(&b.m_rigidBody);
+}
+
 std::unique_ptr<box> world::create_dynamic_box(
 	const float mass,
 	const glm::vec3& size,

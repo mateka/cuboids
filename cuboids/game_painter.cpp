@@ -14,7 +14,8 @@ namespace cuboids {
 game_painter::game_painter(
 	const float worldSize,
 	const std::size_t maxBullets,
-	const std::size_t maxCuboids
+	const std::size_t maxCuboids,
+	const std::size_t maxExplosions
 )
 	: m_shipPainter{
 	    1,
@@ -23,7 +24,7 @@ game_painter::game_painter(
 		glm::vec4{0, 1, 0, 1}, glm::vec4{0, 0, 1, 1}
 	},
 	m_bulletsPainter{ maxBullets },
-	m_cuboidsPainter{ maxCuboids + 1 + maxBullets },
+	m_cuboidsPainter{ 1 + maxCuboids + maxBullets + maxExplosions },
 	m_worldSize{ worldSize }, m_showBoxes{ false }
 {
 	gl::glClearColor(0, 0, 0, 0);
@@ -91,6 +92,11 @@ void game_painter::on_visit(const cuboidslib::cuboid& c) {
 
 void game_painter::on_visit(const cuboidslib::crate& c) {
 	m_cuboids.push_back({ c.transform(), glm::vec4{ 0.55f, 0.27f, 0.08f, 1 } });
+}
+
+void game_painter::on_visit(const cuboidslib::explosion& e) {
+	const auto ratio = e.lived() / e.life_span();
+	m_cuboids.push_back({ e.transform(), glm::vec4{ 1, 1 - ratio, 0, 0.5 } });
 }
 
 }

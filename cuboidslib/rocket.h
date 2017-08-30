@@ -33,6 +33,12 @@ public:
 	/*! \brief visitor pattern - visiting this object.
 	*   \param v visitor object.*/
 	void visit(ivisitor& v) const override;
+
+	/*! \brief Rocket's size getter.
+	*   \return Size of the rocket. */
+	float size() const;
+private:
+	float m_size;
 };
 
 }

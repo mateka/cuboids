@@ -29,6 +29,9 @@ public:
 
 	/*! \brief Visits crate. */
 	void on_visit(crate&) override;
+
+	/*! \brief Visits explosion. */
+	void on_visit(explosion&) override;
 private:
 	game& m_game;
 	iprojectile& m_projectile;

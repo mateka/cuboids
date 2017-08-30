@@ -7,6 +7,7 @@
 #include <cuboidslib/iprojectile.h>
 #include <cuboidslib/iship_factory.h>
 #include <cuboidslib/icuboid_factory.h>
+#include <cuboidslib/explosion.h>
 #include <physicslib/world.h>
 #include <physicslib/body.h>
 
@@ -21,13 +22,15 @@ public:
 	*   \param ship_factory object for creating new ship.
 	*   \param cuboids_factory object for creating new cuboids.
 	*   \param maxBullets how many bullets can be in the simulation.
-	*   \param maxCuboids how many cuboids can be in the simulation.*/
+	*   \param maxCuboids how many cuboids can be in the simulation.
+	*   \param maxExplosions how many explosions can be in the simulation. */
 	game(
 		const float worldSize,
 		iship_factory& ship_factory,
 		std::unique_ptr<icuboid_factory> cuboids_factory,
 		const std::size_t maxBullets,
-		const std::size_t maxCuboids
+		const std::size_t maxCuboids,
+		const std::size_t maxExplosions
 	);
 
 	// moving is disabled
@@ -50,6 +53,10 @@ public:
 	*   \return Max count of cuboids.*/
 	std::size_t max_cuboids() const;
 
+	/*! \brief Max count of explosions accessor.
+	*   \return Max count of explosions.*/
+	std::size_t max_explosions() const;
+
 	/*! \brief Test if game is still playable.
 	*   \return true if player has not collided with cuboid. */
 	bool playable() const;
@@ -65,6 +72,11 @@ public:
 
 	/*! \brief Shot. */
 	void shot();
+
+	/*! \brief Create explosion.
+	*   \param pos position of the explosion.
+	*   \param size size of the explosion. */
+	void explode(const glm::vec3& pos, const float size);
 
 	/*! \brief Update object state.
 	*   \param screenRatio window's dimensions ratio.
@@ -84,10 +96,12 @@ private:
 	std::unique_ptr<icuboid_factory> m_cuboidsFactory;
 	std::vector<std::unique_ptr<iprojectile>> m_bullets;
 	std::vector<std::unique_ptr<icuboid>> m_cuboids;
+	std::vector<std::unique_ptr<explosion>> m_explosions;
 	std::unordered_map<const physicslib::body*, icuboid_object*> m_objects;
 	float m_worldSize;
 	std::size_t m_maxBullets;
 	std::size_t m_maxCuboids;
+	std::size_t m_maxExplosions;
 };
 
 }

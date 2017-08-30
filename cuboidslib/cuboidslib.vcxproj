@@ -169,6 +169,7 @@
   <ItemGroup>
     <ClInclude Include="bullet.h" />
     <ClInclude Include="crate.h" />
+    <ClInclude Include="explosion.h" />
     <ClInclude Include="jamming_policies.h" />
     <ClInclude Include="launcher.h" />
     <ClInclude Include="projectile_collider.h" />
@@ -199,6 +200,7 @@
   <ItemGroup>
     <ClCompile Include="bullet.cpp" />
     <ClCompile Include="crate.cpp" />
+    <ClCompile Include="explosion.cpp" />
     <ClCompile Include="jamming_policies.cpp" />
     <ClCompile Include="projectile_collider.cpp" />
     <ClCompile Include="collision_dispatcher.cpp" />

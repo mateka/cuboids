@@ -21,4 +21,8 @@ void projectile_collider::on_visit(crate& c) {
 	c.die();
 }
 
+void projectile_collider::on_visit(explosion&) {
+	m_projectile.die();
+}
+
 }

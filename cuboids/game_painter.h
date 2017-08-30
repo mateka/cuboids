@@ -16,11 +16,13 @@ public:
 	/*! \brief Creates painter.
 	*   \param worldSize size of game's world.
 	*   \param maxBullets how many bullets can be in the game.
-	*   \param maxCuboids how many cuboids can be in the game. */
+	*   \param maxCuboids how many cuboids can be in the game.
+	*   \param maxExplosions how many explosions can be in the game. */
 	game_painter(
 		const float worldSize,
 		const std::size_t maxBullets,
-		const std::size_t maxCuboids
+		const std::size_t maxCuboids,
+		const std::size_t maxExplosions
 	);
 
 	/*! \brief Toggles showing bounding boxes for ship and bullets. */
@@ -49,6 +51,9 @@ public:
 
 	/*! \brief Visits crate. */
 	void on_visit(const cuboidslib::crate&) override;
+
+	/*! \brief Visits explosion. */
+	void on_visit(const cuboidslib::explosion&) override;
 private:
 	// painters
 	painterslib::colorful_pyramids m_shipPainter;

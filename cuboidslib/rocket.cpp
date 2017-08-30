@@ -13,7 +13,8 @@ rocket::rocket(
 	const seconds lifeSpan,
 	const float size
 )
-	: bullet{w, pos, velocity * 0.75f, lifeSpan * 1.15f, size * 1.5f }
+	: bullet{w, pos, velocity * 0.75f, lifeSpan * 1.15f, size * 1.5f },
+	m_size{ size }
 {}
 
 void rocket::visit(imutable_visitor& v) {
@@ -22,6 +23,10 @@ void rocket::visit(imutable_visitor& v) {
 
 void rocket::visit(ivisitor& v) const {
 	v.on_visit(*this);
+}
+
+float rocket::size() const {
+	return m_size;
 }
 
 }

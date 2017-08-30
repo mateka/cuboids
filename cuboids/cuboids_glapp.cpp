@@ -11,7 +11,7 @@ namespace cuboids {
 cuboids_glapp::cuboids_glapp(const cuboids_glapp::params_type& params)
 	: app{ params }, m_gameSize{ 6.0f }, m_shipFactory{ {0, 0, 5}, 5.0f },
 	m_game{ new_game() },
-	m_painter{ m_gameSize, m_game->max_bullets(), m_game->max_cuboids() },
+	m_painter{ m_gameSize, m_game->max_bullets(), m_game->max_cuboids(), m_game->max_explosions() },
 	m_showFPS{ false }
 {
 	std::cout
@@ -69,13 +69,13 @@ void cuboids_glapp::handle_input() {
 
 std::unique_ptr<cuboidslib::cuboid_factory> cuboids_glapp::cuboids_factory() {
 	return std::make_unique<cuboidslib::cuboid_factory>(
-		m_randomness(), 2s, m_gameSize, 1.5f, 0.15f
+		m_randomness(), 2s, m_gameSize, 1.5f, 0.10f
 	);
 }
 
 std::unique_ptr<cuboidslib::game> cuboids_glapp::new_game() {
 	return std::make_unique<cuboidslib::game>(
-		m_gameSize, m_shipFactory, cuboids_factory(), 1024, 512
+		m_gameSize, m_shipFactory, cuboids_factory(), 1024, 1024, 1024
 	);
 }
 

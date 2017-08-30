@@ -8,6 +8,7 @@ class bullet;
 class rocket;
 class cuboid;
 class crate;
+class explosion;
 
 /*! \brief cuboids lib objects visitor interface. */
 class ivisitor {
@@ -28,6 +29,9 @@ public:
 
 	/*! \brief Visits crate. */
 	virtual void on_visit(const crate&) = 0;
+
+	/*! \brief Visits explosion. */
+	virtual void on_visit(const explosion&) = 0;
 };
 
 }

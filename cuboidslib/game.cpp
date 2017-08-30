@@ -1,7 +1,9 @@
 #include <cuboidslib/game.h>
 #include <cuboidslib/ivisitor.h>
 #include <cuboidslib/collision_dispatcher.h>
+#include <chrono>
 
+using namespace std::chrono_literals;
 
 namespace cuboidslib {
 
@@ -66,7 +68,8 @@ game::game(
 	iship_factory& ship_factory,
 	std::unique_ptr<icuboid_factory> cuboids_factory,
 	const std::size_t maxBullets,
-	const std::size_t maxCuboids
+	const std::size_t maxCuboids,
+	const std::size_t maxExplosions
 )
 	: m_world([this](const physicslib::body* a, const physicslib::body* b) -> void {
 		const auto itA = m_objects.find(a);
@@ -80,7 +83,8 @@ game::game(
 		m_world.create_static_box({ 0.5f, 0.5, 2 * worldSize },{ -worldSize - 0.5, 0, 0 }),
 		m_world.create_static_box({ 0.5f, 0.5, 2 * worldSize },{ worldSize + 0.5, 0, 0 }),
     },
-	m_worldSize{ worldSize }, m_maxBullets{ maxBullets }, m_maxCuboids{ maxCuboids }
+	m_worldSize{ worldSize }, m_maxBullets{ maxBullets }, m_maxCuboids{ maxCuboids },
+	m_maxExplosions{ maxExplosions }
 {
 	m_world.gravity({ 0, 0, 0 });
 	m_walls[0]->restitution(0.5f);
@@ -99,6 +103,10 @@ std::size_t game::max_bullets() const {
 
 std::size_t game::max_cuboids() const {
 	return m_maxCuboids;
+}
+
+std::size_t game::max_explosions() const {
+	return m_maxExplosions;
 }
 
 bool game::playable() const {
@@ -121,6 +129,12 @@ void game::shot() {
 	add_objects(m_player->shot(m_world), m_bullets, m_objects);
 }
 
+void game::explode(const glm::vec3& pos, const float size) {
+	auto e = std::make_unique<explosion>(m_world, pos, size * 250ms, 2 * size);
+	m_objects[e->body()] = e.get();
+	m_explosions.push_back(std::move(e));
+}
+
 void game::update(const float screenRatio, const seconds delta) {
 	// Move walls to screen edges
 	m_walls[0]->position({ -screenRatio * m_worldSize - 0.5, 0, 0 });
@@ -132,14 +146,17 @@ void game::update(const float screenRatio, const seconds delta) {
 	m_cuboidsFactory->update(delta);
 	update_objects(delta, m_bullets);
 	update_objects(delta, m_cuboids);
+	update_objects(delta, m_explosions);
 	// Add new cuboids
 	add_objects(m_cuboidsFactory->create(m_world), m_cuboids, m_objects);
 	// Remove dead entities
 	remove_dead_objects(m_bullets, m_objects);
 	remove_dead_objects(m_cuboids, m_objects);
+	remove_dead_objects(m_explosions, m_objects);
 	// Remove oldest objects, when there is too many
 	remove_oldest_objects(m_bullets, m_objects, max_bullets());
 	remove_oldest_objects(m_cuboids, m_objects, max_cuboids());
+	remove_oldest_objects(m_explosions, m_objects, max_explosions());
 }
 
 void game::visit(ivisitor& v) const {
@@ -147,6 +164,8 @@ void game::visit(ivisitor& v) const {
 		c->visit(v);
 	for (const auto& b : m_bullets)
 		b->visit(v);
+	for (const auto& e : m_explosions)
+		e->visit(v);
 	m_player->visit(v);
 }
 

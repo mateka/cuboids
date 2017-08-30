@@ -2,7 +2,6 @@
 #include <cuboidslib/ivisitor.h>
 #include <cuboidslib/imutable_visitor.h>
 #include <physicslib/world.h>
-#include <glm/gtc/matrix_transform.hpp>
 
 
 namespace cuboidslib {
@@ -39,6 +38,10 @@ const physicslib::body* bullet::body() const {
 
 glm::mat4 bullet::transform() const {
 	return m_body->transform();
+}
+
+glm::vec3 bullet::position() const {
+	return m_body->position();
 }
 
 }

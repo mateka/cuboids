@@ -102,6 +102,14 @@ public:
 	*   \return Body's position. */
 	glm::vec3 position() const;
 
+	/*! \brief Sets body's local scale.
+	*   \param scale body's local scale. */
+	void local_scale(const glm::vec3& scale);
+
+	/*! \brief Returns body's local scale.
+	*   \return Body's local scale. */
+	glm::vec3 local_scale() const;
+
 	/*! \brief Returns transform matrix (without scale!) of the body.
 	*   \return Body's transform. */
 	virtual glm::mat4 transform() const;
