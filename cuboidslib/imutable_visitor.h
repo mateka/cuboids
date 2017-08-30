@@ -5,6 +5,7 @@ namespace cuboidslib {
 
 class moving_ship;
 class bullet;
+class rocket;
 class cuboid;
 class crate;
 
@@ -18,6 +19,9 @@ public:
 
 	/*! \brief Visits bullet. */
 	virtual void on_visit(bullet&) = 0;
+
+	/*! \brief Visits rocket. */
+	virtual void on_visit(rocket&) = 0;
 
 	/*! \brief Visits cuboid. */
 	virtual void on_visit(cuboid&) = 0;

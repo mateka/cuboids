@@ -1,6 +1,7 @@
 #include <cuboidslib/collision_dispatcher.h>
 #include <cuboidslib/moving_ship.h>
 #include <cuboidslib/bullet.h>
+#include <cuboidslib/rocket.h>
 #include <cuboidslib/cuboid.h>
 #include <cuboidslib/crate.h>
 #include <cuboidslib/ship_collider.h>
@@ -20,6 +21,10 @@ void collision_dispatcher::on_visit(moving_ship& s) {
 
 void collision_dispatcher::on_visit(bullet& b) {
 	m_other.visit(projectile_collider{ m_game, b });
+}
+
+void collision_dispatcher::on_visit(rocket& r) {
+	m_other.visit(projectile_collider{ m_game, r });
 }
 
 void collision_dispatcher::on_visit(cuboid& c) {

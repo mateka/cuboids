@@ -1,6 +1,7 @@
 #include <cuboids/game_painter.h>
 #include <cuboidslib/moving_ship.h>
 #include <cuboidslib/bullet.h>
+#include <cuboidslib/rocket.h>
 #include <cuboidslib/cuboid.h>
 #include <cuboidslib/crate.h>
 #include <gllib/gl.h>
@@ -73,6 +74,15 @@ void game_painter::on_visit(const cuboidslib::bullet& b) {
 	});
 	if (m_showBoxes)
 		m_cuboids.push_back({ b.transform(), glm::vec4{ 0, 0.95f, 0, 1 } });
+}
+
+void game_painter::on_visit(const cuboidslib::rocket& r) {
+	m_bullets.push_back({
+		r.transform(), glm::vec4{ 0.85f, 0, 0, 1 },
+		1.0f - static_cast<float>(r.lived() / r.life_span())
+	});
+	if (m_showBoxes)
+		m_cuboids.push_back({ r.transform(), glm::vec4{ 0, 0.95f, 0, 1 } });
 }
 
 void game_painter::on_visit(const cuboidslib::cuboid& c) {

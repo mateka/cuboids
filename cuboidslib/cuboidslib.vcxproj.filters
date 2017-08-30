@@ -105,6 +105,9 @@
     <ClInclude Include="jamming_policies.h">
       <Filter>Guns</Filter>
     </ClInclude>
+    <ClInclude Include="rocket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="moving_ship.cpp">
@@ -148,6 +151,9 @@
     </ClCompile>
     <ClCompile Include="jamming_policies.cpp">
       <Filter>Guns</Filter>
+    </ClCompile>
+    <ClCompile Include="rocket.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

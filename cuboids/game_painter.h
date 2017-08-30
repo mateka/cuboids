@@ -41,6 +41,9 @@ public:
 	/*! \brief Visits bullet. */
 	void on_visit(const cuboidslib::bullet&) override;
 
+	/*! \brief Visits rocket. */
+	void on_visit(const cuboidslib::rocket&) override;
+
 	/*! \brief Visits cuboid. */
 	void on_visit(const cuboidslib::cuboid&) override;
 

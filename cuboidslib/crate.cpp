@@ -4,6 +4,7 @@
 #include <physicslib/world.h>
 #include <cuboidslib/spray_gun.h>
 #include <cuboidslib/wingman.h>
+#include <cuboidslib/rocket.h>
 #include <memory>
 #include <chrono>
 
@@ -34,11 +35,17 @@ void crate::visit(ivisitor& v) const {
 std::unique_ptr<iprojectile_factory> crate::gun() {
 	switch (m_gun) {
 	case gun_model::spray3:
-		return std::make_unique<spray_gun<bullet, jamming::ammo_count_jam>>(650ms, 3, 50);
+		return std::make_unique<spray_gun<bullet, jamming::ammo_count_jam>>(450ms, 3, 50);
 	case gun_model::spray5:
-		return std::make_unique<spray_gun<bullet, jamming::ammo_count_jam>>(750ms, 5, 25);
+		return std::make_unique<spray_gun<bullet, jamming::ammo_count_jam>>(550ms, 5, 25);
+	case gun_model::bazooka:
+		return std::make_unique<launcher<rocket, jamming::ammo_count_jam>>(400ms, glm::vec3{ 0, 0, -5.0f }, 5s, 1.0f, 15);
+	case gun_model::patriots:
+		return std::make_unique<spray_gun<rocket, jamming::ammo_count_jam>>(300ms, 3, 25);
+	case gun_model::boombastic3:
+		return std::make_unique<spray_gun<rocket, jamming::ammo_count_jam>>(650ms, 3, 10);
 	default:
-		return std::make_unique<wingman<bullet, jamming::ammo_count_jam>>(300ms, 50);
+		return std::make_unique<wingman<bullet, jamming::ammo_count_jam>>(150ms, 50);
 	}
 }
 

@@ -190,6 +190,7 @@
     <ClInclude Include="moving_ship.h" />
     <ClInclude Include="ivisitor.h" />
     <ClInclude Include="projectile.h" />
+    <ClInclude Include="rocket.h" />
     <ClInclude Include="ship_collider.h" />
     <ClInclude Include="ship_factory.h" />
     <ClInclude Include="spray_gun.h" />
@@ -208,6 +209,7 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="projectile.cpp" />
     <ClCompile Include="moving_ship.cpp" />
+    <ClCompile Include="rocket.cpp" />
     <ClCompile Include="ship_collider.cpp" />
     <ClCompile Include="ship_factory.cpp" />
   </ItemGroup>

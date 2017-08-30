@@ -11,6 +11,9 @@ enum class gun_model {
 	wingman, //!< two guns on wings
 	spray3,	//!< spray gun shoting 3 bullets
 	spray5,	//!< spray gun shoting 5 bullets
+	bazooka, //!< rocket launcher
+	patriots, //!< two rocket launchers on wings
+	boombastic3	//!< spray gun shoting 3 rockets
 };
 
 /*! \brief Crate object */

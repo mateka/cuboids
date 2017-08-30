@@ -21,6 +21,9 @@ public:
 	/*! \brief Visits projectile. */
 	void on_visit(bullet&) override {}
 
+	/*! \brief Visits projectile. */
+	void on_visit(rocket&) override {}
+
 	/*! \brief Visits cuboid. */
 	void on_visit(cuboid&) override;
 
