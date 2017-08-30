@@ -25,6 +25,10 @@ public:
 	*   \param w physics world.
 	*   \param pos starting position of bullets. */
 	std::vector<std::unique_ptr<iprojectile>> create(physicslib::world& w, const glm::vec3& pos) override;
+
+	/*! \brief Check if gun is still working.
+	*   \return false, if player can shoot from this gun. */
+	bool jammed() const override;
 private:
 	utils::cooldown_timer m_cooldown;
 };

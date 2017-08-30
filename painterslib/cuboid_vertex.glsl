@@ -7,10 +7,10 @@ const char* vertex = R"(
 #version 430
 
 layout(location = 0) in vec3 inPosition;
-layout(location = 1) in vec3 inColor;
-layout(location = 2) in mat4 model;
+layout(location = 1) in mat4 model;
+layout(location = 5) in vec4 inColor;
 
-out vec3 vertexColor;
+out vec4 vertexColor;
 
 uniform mat4 pv;
 

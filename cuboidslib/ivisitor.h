@@ -6,6 +6,7 @@ namespace cuboidslib {
 class moving_ship;
 class bullet;
 class cuboid;
+class crate;
 
 /*! \brief cuboids lib objects visitor interface. */
 class ivisitor {
@@ -20,6 +21,9 @@ public:
 
 	/*! \brief Visits cuboid. */
 	virtual void on_visit(const cuboid&) = 0;
+
+	/*! \brief Visits crate. */
+	virtual void on_visit(const crate&) = 0;
 };
 
 }

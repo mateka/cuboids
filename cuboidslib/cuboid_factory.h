@@ -15,12 +15,14 @@ public:
 	*   \param cooldown time between generating waves of cuboids.
 	*   \param worldSize size of world in which cuboids will be generated.
 	*   \param how many additional cuboids will be spawned for each cuboid,
-	*   which was killed by player. */
+	*   which was killed by player.
+	*   \param crateProbability probability of dropping crate instead of cuboid. */
 	cuboid_factory(
 		const std::mt19937_64::result_type seed,
 		const seconds& cooldown,
 		const float worldSize,
-		const float killPenalty
+		const float killPenalty,
+		const float crateProbability
 	);
 
 	/*! \brief Update object state.
@@ -43,8 +45,10 @@ private:
 	std::uniform_real_distribution<float> m_size;
 	std::uniform_real_distribution<float> m_velocity;
 	std::uniform_real_distribution<float> m_rotation;
+	std::uniform_real_distribution<float> m_crateDistribution;
 	float m_killPenalty;
 	float m_additional;
+	float m_crateProbability;
 };
 
 }

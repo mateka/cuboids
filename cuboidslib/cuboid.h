@@ -47,8 +47,8 @@ public:
 	*   \return Body associated with cuboid. */
 	const physicslib::body* body() const override;
 
-	/*! \brief Returns model matrix of the ship.
-	*   \return Ship's body transform. */
+	/*! \brief Returns model matrix of the cuboid.
+	*   \return Cuboid's body transform. */
 	glm::mat4 transform() const;
 private:
 	std::unique_ptr<physicslib::box> m_body;

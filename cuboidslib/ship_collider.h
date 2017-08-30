@@ -23,6 +23,9 @@ public:
 
 	/*! \brief Visits cuboid. */
 	void on_visit(cuboid&) override;
+
+	/*! \brief Visits crate. */
+	void on_visit(crate&) override;
 private:
 	game& m_game;
 	iship& m_ship;

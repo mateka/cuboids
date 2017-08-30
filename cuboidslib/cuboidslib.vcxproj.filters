@@ -19,6 +19,9 @@
     <Filter Include="Collision Dispatching">
       <UniqueIdentifier>{0dededdd-6e6a-440c-b7da-60073fc0c11e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Guns">
+      <UniqueIdentifier>{710e0e19-d0ff-4480-9117-ad4e53e561eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="error.h">
@@ -34,9 +37,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="projectile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="default_gun.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cuboid.h">
@@ -87,6 +87,12 @@
     <ClInclude Include="ship_factory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="crate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="default_gun.h">
+      <Filter>Guns</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="moving_ship.cpp">
@@ -99,9 +105,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="projectile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="default_gun.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cuboid.cpp">
@@ -124,6 +127,12 @@
     </ClCompile>
     <ClCompile Include="ship_factory.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="crate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="default_gun.cpp">
+      <Filter>Guns</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

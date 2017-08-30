@@ -27,4 +27,8 @@ default_gun::create(physicslib::world& w, const glm::vec3& pos) {
 	return result;
 }
 
+bool default_gun::jammed() const {
+	return false;
+}
+
 }

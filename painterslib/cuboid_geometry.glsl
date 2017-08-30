@@ -7,10 +7,10 @@ const char* geometry = R"(
 #version 430
 
 layout(triangles) in;
-in vec3 vertexColor[3];
+in vec4 vertexColor[3];
 
 layout(triangle_strip, max_vertices = 3) out;
-out vec3 fragmentColor;
+out vec4 fragmentColor;
 out noperspective vec3 wireframeDistance;
 
 void main()

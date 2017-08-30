@@ -2,6 +2,7 @@
 
 #include <cuboidslib/icuboid_object.h>
 #include <cuboidslib/iprojectile.h>
+#include <cuboidslib/iprojectile_factory.h>
 #include <memory>
 #include <vector>
 
@@ -28,6 +29,10 @@ public:
 	*   \param w physics world
     *   \return Collection of projectile objects. */
     virtual std::vector<std::unique_ptr<iprojectile>> shot(physicslib::world& w) = 0;
+
+	/*! \brief Changes ship's gun.
+	*   \param gun new gun. */
+	virtual void change_gun(std::unique_ptr<iprojectile_factory> gun) = 0;
 };
 
 }

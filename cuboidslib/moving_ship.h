@@ -66,11 +66,16 @@ public:
 	*   \return Collection of projectile objects. */
 	std::vector<std::unique_ptr<iprojectile>> shot(physicslib::world& w) override;
 
+	/*! \brief Changes ship's gun.
+	*   \param gun new gun. */
+	void change_gun(std::unique_ptr<iprojectile_factory> gun) override;
+
 	/*! \brief Returns model matrix of the ship.
 	*   \return Ship's body transform. */
 	glm::mat4 transform() const;
 private:
 	default_gun m_defaultGun;
+	std::unique_ptr<iprojectile_factory> m_fancyGun;
 	iprojectile_factory* m_gun;
 	std::unique_ptr<physicslib::box> m_body;
 	glm::vec3 m_gunPosition;

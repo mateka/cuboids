@@ -14,22 +14,20 @@ public:
 	/*! \brief Data for each pyramid instance. */
 	struct instance {
 		glm::mat4 model;	//!< model matrix
+		glm::vec4 color;	//!< instance color
 
 		/*! \brief Creates instance data.
-		*   \param m model matrix. */
-		instance(const glm::mat4& m)
-			: model(m)
+		*   \param m model matrix.
+		*   \param c instance color. */
+		instance(const glm::mat4& m, const glm::vec4& c)
+			: model(m), color(c)
 		{}
 	};
 
 	/*! \brief Creates painter, which paints cuboids
 	* with the same color in each vertex.
-	*   \param max_instances max count of instances.
-	*   \param color vertices color.*/
-	cuboids(
-		const std::size_t max_instances,
-		const glm::vec4& color
-	);
+	*   \param max_instances max count of instances. */
+	cuboids(const std::size_t max_instances);
 
 	// moving is disabled
 	cuboids(cuboids&&) = delete;
@@ -50,10 +48,9 @@ private:
 	// Helper vertex struct
 	struct vertex {
 		glm::vec3 position;
-		glm::vec4 color;
 
-		vertex(const glm::vec3& v = glm::vec3(), const glm::vec4& c = glm::vec4())
-			: position{ v }, color{ c }
+		vertex(const glm::vec3& v = glm::vec3())
+			: position{ v }
 		{}
 	};
 

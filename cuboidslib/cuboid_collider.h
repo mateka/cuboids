@@ -12,8 +12,8 @@ class cuboid_collider : public imutable_visitor {
 public:
 	/*! \brief Memorizes game and cuboid objects.
 	*   \param g game in which collision happened.
-	*   \param cuboid cuboid colliding with some object.*/
-	cuboid_collider(game& g, icuboid& cuboid);
+	*   \param c cuboid colliding with some object.*/
+	cuboid_collider(game& g, icuboid& c);
 
 	/*! \brief Visits ship. */
 	void on_visit(moving_ship&) override;
@@ -23,6 +23,9 @@ public:
 
 	/*! \brief Visits cuboid. */
 	void on_visit(cuboid&) override {}
+
+	/*! \brief Visits crate. */
+	void on_visit(crate&) override {}
 private:
 	game& m_game;
 	icuboid& m_cuboid;

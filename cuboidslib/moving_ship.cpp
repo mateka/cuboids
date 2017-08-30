@@ -25,6 +25,8 @@ moving_ship::moving_ship(
 }
 
 void moving_ship::update(const seconds delta) {
+	if (m_gun->jammed())
+		m_gun = &m_defaultGun;
 	m_gun->update(delta);
 }
 
@@ -66,6 +68,11 @@ void moving_ship::stop() {
 std::vector<std::unique_ptr<iprojectile>> moving_ship::shot(physicslib::world& w) {
 	const auto pos = transform() * glm::vec4{ m_gunPosition, 1};
 	return m_gun->create(w, pos);
+}
+
+void moving_ship::change_gun(std::unique_ptr<iprojectile_factory> gun) {
+	m_fancyGun = std::move(gun);
+	m_gun = m_fancyGun.get();
 }
 
 glm::mat4 moving_ship::transform() const {

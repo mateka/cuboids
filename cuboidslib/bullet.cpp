@@ -18,6 +18,7 @@ bullet::bullet(
 {
 	m_body->constrain_movement(true, false, true); // Bullet can only move on xz plane
 	m_body->constrain_rotation(false, false, true); // Bullet can only rotate around z axis
+	m_body->restitution(1.0f);	// bullets like to bounce
 
 	m_body->velocity(velocity);
 	m_body->angular_velocity({0, 0, 2.0f * velocity.length()});

@@ -8,16 +8,16 @@
 
 namespace cuboidslib {
 
-cuboid_collider::cuboid_collider(game& g, icuboid& cuboid)
-	: m_game(g), m_cuboid(cuboid)
+cuboid_collider::cuboid_collider(game& g, icuboid& c)
+	: m_game{ g }, m_cuboid{ c }
 {}
 
 void cuboid_collider::on_visit(moving_ship& s) {
-	m_cuboid.visit(ship_collider(m_game, s));
+	m_cuboid.visit(ship_collider{ m_game, s });
 }
 
 void cuboid_collider::on_visit(bullet& b) {
-	m_cuboid.visit(projectile_collider(m_game, b));
+	m_cuboid.visit(projectile_collider{ m_game, b });
 }
 
 }

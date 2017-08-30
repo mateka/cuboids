@@ -42,16 +42,17 @@ public:
 
 	/*! \brief Visits cuboid. */
 	void on_visit(const cuboidslib::cuboid&) override;
+
+	/*! \brief Visits crate. */
+	void on_visit(const cuboidslib::crate&) override;
 private:
 	// painters
 	painterslib::pyramids m_shipPainter;
 	painterslib::pyramids m_bulletsPainter;
 	painterslib::cuboids m_cuboidsPainter;
-	painterslib::cuboids m_boxesPainter;
 	// cached instances to paint
 	std::vector<painterslib::pyramids::instance> m_bullets;
 	std::vector<painterslib::cuboids::instance> m_cuboids;
-	std::vector<painterslib::cuboids::instance> m_boxes;
 	// other
 	glm::mat4 m_pv;
 	float m_worldSize;

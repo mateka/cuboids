@@ -168,6 +168,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bullet.h" />
+    <ClInclude Include="crate.h" />
     <ClInclude Include="projectile_collider.h" />
     <ClInclude Include="collision_dispatcher.h" />
     <ClInclude Include="cuboid.h" />
@@ -192,6 +193,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bullet.cpp" />
+    <ClCompile Include="crate.cpp" />
     <ClCompile Include="projectile_collider.cpp" />
     <ClCompile Include="collision_dispatcher.cpp" />
     <ClCompile Include="cuboid.cpp" />

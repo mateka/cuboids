@@ -6,6 +6,7 @@ namespace cuboidslib {
 class moving_ship;
 class bullet;
 class cuboid;
+class crate;
 
 /*! \brief cuboids lib mutable objects visitor interface. */
 class imutable_visitor {
@@ -20,6 +21,9 @@ public:
 
 	/*! \brief Visits cuboid. */
 	virtual void on_visit(cuboid&) = 0;
+
+	/*! \brief Visits crate. */
+	virtual void on_visit(crate&) = 0;
 };
 
 }
