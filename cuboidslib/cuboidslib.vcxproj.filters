@@ -99,6 +99,12 @@
     <ClInclude Include="wingman.h">
       <Filter>Guns</Filter>
     </ClInclude>
+    <ClInclude Include="launcher.h">
+      <Filter>Guns</Filter>
+    </ClInclude>
+    <ClInclude Include="jamming_policies.h">
+      <Filter>Guns</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="moving_ship.cpp">
@@ -140,10 +146,7 @@
     <ClCompile Include="default_gun.cpp">
       <Filter>Guns</Filter>
     </ClCompile>
-    <ClCompile Include="spray_gun.cpp">
-      <Filter>Guns</Filter>
-    </ClCompile>
-    <ClCompile Include="wingman.cpp">
+    <ClCompile Include="jamming_policies.cpp">
       <Filter>Guns</Filter>
     </ClCompile>
   </ItemGroup>

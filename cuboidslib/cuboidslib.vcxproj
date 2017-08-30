@@ -169,6 +169,8 @@
   <ItemGroup>
     <ClInclude Include="bullet.h" />
     <ClInclude Include="crate.h" />
+    <ClInclude Include="jamming_policies.h" />
+    <ClInclude Include="launcher.h" />
     <ClInclude Include="projectile_collider.h" />
     <ClInclude Include="collision_dispatcher.h" />
     <ClInclude Include="cuboid.h" />
@@ -196,6 +198,7 @@
   <ItemGroup>
     <ClCompile Include="bullet.cpp" />
     <ClCompile Include="crate.cpp" />
+    <ClCompile Include="jamming_policies.cpp" />
     <ClCompile Include="projectile_collider.cpp" />
     <ClCompile Include="collision_dispatcher.cpp" />
     <ClCompile Include="cuboid.cpp" />
@@ -207,8 +210,6 @@
     <ClCompile Include="moving_ship.cpp" />
     <ClCompile Include="ship_collider.cpp" />
     <ClCompile Include="ship_factory.cpp" />
-    <ClCompile Include="spray_gun.cpp" />
-    <ClCompile Include="wingman.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
