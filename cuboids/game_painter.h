@@ -4,6 +4,7 @@
 #include <cuboidslib/game.h>
 #include <utils/seconds.h>
 #include <painterslib/pyramids.h>
+#include <painterslib/colorful_pyramids.h>
 #include <painterslib/cuboids.h>
 
 
@@ -47,7 +48,7 @@ public:
 	void on_visit(const cuboidslib::crate&) override;
 private:
 	// painters
-	painterslib::pyramids m_shipPainter;
+	painterslib::colorful_pyramids m_shipPainter;
 	painterslib::pyramids m_bulletsPainter;
 	painterslib::cuboids m_cuboidsPainter;
 	// cached instances to paint

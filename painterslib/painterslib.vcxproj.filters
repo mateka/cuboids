@@ -36,6 +36,15 @@
     <None Include="pyramid_geometry.glsl">
       <Filter>Shader Files</Filter>
     </None>
+    <None Include="colorful_pyramid_fragment.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="colorful_pyramid_geometry.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="colorful_pyramid_vertex.glsl">
+      <Filter>Shader Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pyramids.cpp">
@@ -44,12 +53,21 @@
     <ClCompile Include="cuboids.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="colorful_pyramids.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pyramids.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cuboids.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="painter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="colorful_pyramids.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

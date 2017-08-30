@@ -171,14 +171,20 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="colorful_pyramids.h" />
     <ClInclude Include="cuboids.h" />
+    <ClInclude Include="painter.h" />
     <ClInclude Include="pyramids.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="colorful_pyramids.cpp" />
     <ClCompile Include="cuboids.cpp" />
     <ClCompile Include="pyramids.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="colorful_pyramid_fragment.glsl" />
+    <None Include="colorful_pyramid_geometry.glsl" />
+    <None Include="colorful_pyramid_vertex.glsl" />
     <None Include="cuboid_fragment.glsl" />
     <None Include="cuboid_geometry.glsl" />
     <None Include="cuboid_vertex.glsl" />

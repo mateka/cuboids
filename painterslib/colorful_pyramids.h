@@ -6,16 +6,18 @@
 namespace painterslib {
 
 namespace details {
-namespace pyramids {
+namespace colorful_pyramids {
 
 /*! \brief Data for each pyramid vertex. */
 struct vertex {
 	glm::vec3 position;	//!< Vertex position
+	glm::vec4 color;	//!< Vertex color
 
 	/*! \brief Creates vertex data.
-	*   \param v vertex position. */
-	vertex(const glm::vec3& v = glm::vec3())
-		: position{ v }
+	*   \param v vertex position. 
+	*   \param c vertex position. */
+	vertex(const glm::vec3& v = glm::vec3(), const glm::vec4& c = glm::vec4())
+		: position{ v }, color{ c }
 	{}
 
 	/*! \brief Enable generic vertex attributes in vbo from index idx.
@@ -29,15 +31,11 @@ struct vertex {
 /*! \brief Data for each pyramid instance. */
 struct instance {
 	glm::mat4 model;	//!< model matrix
-	glm::vec4 color;	//!< instance color
-	float intensity;	//!< color intensity
 
 	/*! \brief Creates instance data.
-	*   \param m model matrix.
-	*   \param c instance color.
-	*   \param i color intensity. */
-	instance(const glm::mat4& m, const glm::vec4& c, const float i = 1.0f)
-		: model(m), color(c), intensity(i)
+	*   \param m model matrix. */
+	instance(const glm::mat4& m)
+		: model(m)
 	{}
 
 	/*! \brief Enable generic vertex attributes in vbo from index idx.
@@ -51,15 +49,27 @@ struct instance {
 }
 
 
-/*! \brief Class for painting pyramids in OpenGL. */
-class pyramids final : public painter<
-	details::pyramids::vertex, details::pyramids::instance
+/*! \brief Class for painting colorful pyramids in OpenGL. */
+class colorful_pyramids final : public painter<
+	details::colorful_pyramids::vertex, details::colorful_pyramids::instance
 > {
 public:
 	/*! \brief Creates painter, which paints pyramids
-	*   with the same color in each vertex.
-	*   \param maxInstances max count of instances. */
-	pyramids(const std::size_t maxInstances);
+	*   with different color in each vertex.
+	*   \param maxInstances max count of instances.
+	*   \param apex apex color.
+	*   \param left_top color of the top left vertex.
+	*   \param right_top color of the top right vertex.
+	*   \param left_bottom color of the bottom left vertex.
+	*   \param right_bottom color of the bottom right vertex.*/
+	colorful_pyramids(
+		const std::size_t maxInstances,
+		const glm::vec4& apex,
+		const glm::vec4& leftTop,
+		const glm::vec4& rightTop,
+		const glm::vec4& leftBottom,
+		const glm::vec4& rightBottom
+	);
 };
 
 }

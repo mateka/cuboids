@@ -21,7 +21,7 @@ game_painter::game_painter(
 		glm::vec4{1, 0, 0, 1}, glm::vec4{1, 1, 0, 1},
 		glm::vec4{0, 1, 0, 1}, glm::vec4{0, 0, 1, 1}
 	},
-	m_bulletsPainter{ maxBullets, glm::vec4{ 0.85f, 0.65f, 0, 1 } },
+	m_bulletsPainter{ maxBullets },
 	m_cuboidsPainter{ maxCuboids + 1 + maxBullets },
 	m_worldSize{ worldSize }, m_showBoxes{ false }
 {
@@ -68,7 +68,7 @@ void game_painter::on_visit(const cuboidslib::moving_ship& s) {
 
 void game_painter::on_visit(const cuboidslib::bullet& b) {
 	m_bullets.push_back({
-		b.transform(),
+		b.transform(), glm::vec4{ 0.85f, 0.65f, 0, 1 },
 		1.0f - static_cast<float>(b.lived() / b.life_span())
 	});
 	if (m_showBoxes)
