@@ -69,7 +69,7 @@ void cuboids_glapp::handle_input() {
 
 std::unique_ptr<cuboidslib::cuboid_factory> cuboids_glapp::cuboids_factory() {
 	return std::make_unique<cuboidslib::cuboid_factory>(
-		m_randomness(), 2s, m_gameSize, 1.5f, 1.0f
+		m_randomness(), 2s, m_gameSize, 1.5f, 0.15f
 	);
 }
 

@@ -17,7 +17,7 @@ spray_gun::spray_gun(
 {
 	for (std::size_t i = 0; i < n; ++i) {
 		const auto x = (i - 0.5f * n) * 0.3;
-		m_guns.emplace_back(cooldown, glm::vec3{ x, 0, -4.0f }, 3s);
+		m_guns.emplace_back(cooldown, glm::vec3{ x, 0, -4.0f }, 3s, 0.75f);
 	}
 }
 

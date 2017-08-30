@@ -64,8 +64,10 @@ std::unique_ptr<icuboid> cuboid_factory::new_cuboid(physicslib::world& w, const 
 
 std::unique_ptr<icuboid> cuboid_factory::new_crate(physicslib::world& w, const glm::vec3& pos) {
 	const auto draw = m_gunsDistribution(m_engine);
-	auto model = gun_model::spray3;
-	if (draw < 0.15f)
+	auto model = gun_model::wingman;
+	if (draw < 0.25f)
+		model = gun_model::spray3;
+	else if (draw < 0.45f)
 		model = gun_model::spray5;
 	
 	return std::make_unique<crate>(

@@ -3,6 +3,7 @@
 #include <cuboidslib/imutable_visitor.h>
 #include <physicslib/world.h>
 #include <cuboidslib/spray_gun.h>
+#include <cuboidslib/wingman.h>
 #include <memory>
 #include <chrono>
 
@@ -32,10 +33,12 @@ void crate::visit(ivisitor& v) const {
 
 std::unique_ptr<iprojectile_factory> crate::gun() {
 	switch (m_gun) {
+	case gun_model::spray3:
+		return std::make_unique<spray_gun>(650ms, 3, 50);
 	case gun_model::spray5:
 		return std::make_unique<spray_gun>(750ms, 5, 25);
 	default:
-		return std::make_unique<spray_gun>(650ms, 3, 50);
+		return std::make_unique<wingman>(300ms, 50);
 	}
 }
 

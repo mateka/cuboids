@@ -96,6 +96,9 @@
     <ClInclude Include="spray_gun.h">
       <Filter>Guns</Filter>
     </ClInclude>
+    <ClInclude Include="wingman.h">
+      <Filter>Guns</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="moving_ship.cpp">
@@ -138,6 +141,9 @@
       <Filter>Guns</Filter>
     </ClCompile>
     <ClCompile Include="spray_gun.cpp">
+      <Filter>Guns</Filter>
+    </ClCompile>
+    <ClCompile Include="wingman.cpp">
       <Filter>Guns</Filter>
     </ClCompile>
   </ItemGroup>

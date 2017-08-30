@@ -19,12 +19,14 @@ public:
 	*   \param w physics world in which bullet will be registered.
 	*   \param pos starting position of the bullet.
 	*   \param velocity linear velocity of the bullet.
-	*   \param lifeSpan how long bullet will live. */
+	*   \param lifeSpan how long bullet will live.
+	*   \param size size of the bullet (default: 1.0f). */
 	bullet(
 		physicslib::world& w,
 		const glm::vec3& pos,
 		const glm::vec3& velocity,
-		const seconds lifeSpan
+		const seconds lifeSpan,
+		const float size = 1.0f
 	);
 
 	/*! \brief visitor pattern - visiting this object.

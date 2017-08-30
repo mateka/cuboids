@@ -191,6 +191,7 @@
     <ClInclude Include="ship_collider.h" />
     <ClInclude Include="ship_factory.h" />
     <ClInclude Include="spray_gun.h" />
+    <ClInclude Include="wingman.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bullet.cpp" />
@@ -207,6 +208,7 @@
     <ClCompile Include="ship_collider.cpp" />
     <ClCompile Include="ship_factory.cpp" />
     <ClCompile Include="spray_gun.cpp" />
+    <ClCompile Include="wingman.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

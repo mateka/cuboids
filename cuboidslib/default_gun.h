@@ -16,11 +16,13 @@ public:
 	/*! \brief Creates gun, which shots simple bullets with given cooldown.
 	*   \param cooldown cooldown between two shots.
 	*   \param velocity velocity of bullets (default: { 0, 0, -5.0f }).
-	*   \param lifetime lifetime of bullets (default: 2s). */
+	*   \param lifetime lifetime of bullets (default: 2s).
+	*   \param size size of bullets (default: 1). */
 	default_gun(
 		const seconds& cooldown,
 		const glm::vec3& velocity = glm::vec3{ 0, 0, -5.0f },
-		const seconds& lifetime = seconds{2}
+		const seconds& lifetime = seconds{2},
+		const float size = 1.0f
 	);
 
 	/*! \brief Update object state.
@@ -39,6 +41,7 @@ private:
 	utils::cooldown_timer m_cooldown;
 	glm::vec3 m_velocity;
 	seconds m_lifetime;
+	float m_size;
 };
 
 }
