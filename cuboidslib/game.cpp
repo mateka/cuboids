@@ -130,7 +130,7 @@ void game::shot() {
 }
 
 void game::explode(const glm::vec3& pos, const float size) {
-	auto e = std::make_unique<explosion>(m_world, pos, size * 250ms, 2 * size);
+	auto e = std::make_unique<explosion>(m_world, pos, size * 250ms, 4.0f * size);
 	m_objects[e->body()] = e.get();
 	m_explosions.push_back(std::move(e));
 }

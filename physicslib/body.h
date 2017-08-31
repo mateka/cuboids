@@ -104,15 +104,15 @@ public:
 
 	/*! \brief Sets body's local scale.
 	*   \param scale body's local scale. */
-	void local_scale(const glm::vec3& scale);
+	void scale(const glm::vec3& scale);
 
 	/*! \brief Returns body's local scale.
 	*   \return Body's local scale. */
-	glm::vec3 local_scale() const;
+	glm::vec3 scale() const;
 
-	/*! \brief Returns transform matrix (without scale!) of the body.
+	/*! \brief Returns transform matrix of the body.
 	*   \return Body's transform. */
-	virtual glm::mat4 transform() const;
+	glm::mat4 transform() const;
 
 	/*! \brief Restitution accessor.
 	*   \return Restitution of the body. */

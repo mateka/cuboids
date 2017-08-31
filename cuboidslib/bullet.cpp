@@ -14,7 +14,7 @@ bullet::bullet(
 	const float size
 )
 	: projectile{ lifeSpan },
-	m_body{ w.create_dynamic_box(0.1f * size, size * glm::vec3{ 0.1f, 0.1f, 0.2f }, pos) }
+	m_body{ w.create_dynamic_box(0.1f * size, size * glm::vec3{ 0.2f, 0.2f, 0.4f }, pos) }
 {
 	m_body->constrain_movement(true, false, true); // Bullet can only move on xz plane
 	m_body->constrain_rotation(false, false, true); // Bullet can only rotate around z axis

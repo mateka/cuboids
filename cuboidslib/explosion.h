@@ -65,6 +65,7 @@ private:
 	std::unique_ptr<physicslib::box> m_body;
 	const seconds m_lifeSpan;
 	seconds m_lived;
+	float m_size;
 };
 
 }

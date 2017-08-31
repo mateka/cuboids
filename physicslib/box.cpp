@@ -11,9 +11,11 @@ box::box(
 	const glm::vec3& size,
 	const btTransform& startTransform
 )
-	: box_shape_holder{ size },
+	: box_shape_holder{ {0.5f, 0.5f, 0.5f} },
 	body { w, mass, m_shape, startTransform }
-{}
+{
+	scale(size);
+}
 
 box::box(
 	world& w,
@@ -21,9 +23,11 @@ box::box(
 	const glm::vec3& size,
 	const glm::vec3& startPosition
 )
-	: box_shape_holder{ size },
+	: box_shape_holder{ { 0.5f, 0.5f, 0.5f } },
 	body{ w, mass, m_shape, startPosition }
-{}
+{
+	scale(size);
+}
 
 box::box(
 	world& w,
@@ -40,15 +44,6 @@ box::box(
 )
 	: box{ w, 0.0f, size, startPosition }
 {}
-
-glm::mat4 box::scale() const {
-	const auto sv = 2 * m_shape.getImplicitShapeDimensions();
-	return glm::scale(glm::mat4(), glm::vec3{ sv.x(), sv.y(), sv.z() });
-}
-
-glm::mat4 box::transform() const {
-	return body::transform() * scale();
-}
 
 namespace details {
 

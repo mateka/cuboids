@@ -16,7 +16,7 @@ moving_ship::moving_ship(
 	const float speed
 )
 	: m_defaultGun{300ms}, m_gun {&m_defaultGun},
-	m_body{ w.create_dynamic_box(size, 0.5f * glm::vec3{size, size, size}, pos) },
+	m_body{ w.create_dynamic_box(size, glm::vec3{size, size, size}, pos) },
 	m_gunPosition{0, 0, -0.5},
 	m_speed{ speed }, m_alive{ true }
 {

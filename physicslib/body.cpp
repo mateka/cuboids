@@ -1,5 +1,6 @@
 #include <physicslib/body.h>
 #include <physicslib/world.h>
+#include <glm/gtc/matrix_transform.hpp>
 #include <limits>
 #include <array>
 
@@ -103,13 +104,13 @@ glm::vec3 body::position() const {
 	return { pos.x(), pos.y(), pos.z() };
 }
 
-void body::local_scale(const glm::vec3& scale) {
+void body::scale(const glm::vec3& scale) {
 	m_rigidBody.getCollisionShape()->
 		setLocalScaling({ scale.x, scale.y, scale.z });
 	m_world.update_aabb(*this);
 }
 
-glm::vec3 body::local_scale() const {
+glm::vec3 body::scale() const {
 	const auto s = m_rigidBody.getCollisionShape()->getLocalScaling();
 	return { s.x(), s.y(), s.z() };
 }
@@ -120,12 +121,13 @@ glm::mat4 body::transform() const {
 
 	std::array<btScalar, 16> components;
 	transform.getOpenGLMatrix(components.data());
-	return  {
+	const glm::mat4 rotationXtranslate {
 		components[0], components[1], components[2], components[3],
 		components[4], components[5], components[6], components[7],
 		components[8], components[9], components[10], components[11],
 		components[12], components[13], components[14], components[15]
 	};
+	return rotationXtranslate * glm::scale(glm::mat4(), scale());
 }
 
 float body::restitution() const {

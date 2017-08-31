@@ -15,8 +15,8 @@ explosion::explosion(
 	const seconds lifeSpan,
 	const float size
 )
-	: m_body{ w.create_dynamic_box(size, size * glm::vec3{ 1.0f, 1.0f, 1.0f }, pos) },
-	m_lifeSpan{ lifeSpan }, m_lived{ 0 }
+	: m_body{ w.create_dynamic_box(size, glm::vec3{ 1.0f, 1.0f, 1.0f }, pos) },
+	m_lifeSpan{ lifeSpan }, m_lived{ 0 }, m_size{ size }
 {
 	m_body->constrain_movement(false, false, false); // Explosions do not move
 	m_body->angular_velocity({15, 15, 15});
@@ -40,8 +40,8 @@ glm::mat4 explosion::transform() const {
 
 void explosion::update(const seconds delta) {
 	m_lived += delta;
-	auto scale = lived() / life_span();
-	m_body->local_scale({ scale, scale, scale });
+	auto scale = lived() / life_span() * m_size;
+	m_body->scale({ scale, scale, scale });
 }
 
 seconds explosion::life_span() const {
