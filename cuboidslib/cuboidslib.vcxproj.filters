@@ -111,6 +111,12 @@
     <ClInclude Include="explosion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="explosion_collider.h">
+      <Filter>Collision Dispatching</Filter>
+    </ClInclude>
+    <ClInclude Include="rocket_collider.h">
+      <Filter>Collision Dispatching</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="moving_ship.cpp">
@@ -160,6 +166,12 @@
     </ClCompile>
     <ClCompile Include="explosion.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="explosion_collider.cpp">
+      <Filter>Collision Dispatching</Filter>
+    </ClCompile>
+    <ClCompile Include="rocket_collider.cpp">
+      <Filter>Collision Dispatching</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

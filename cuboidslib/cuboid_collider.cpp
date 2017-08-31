@@ -5,6 +5,8 @@
 #include <cuboidslib/icuboid.h>
 #include <cuboidslib/ship_collider.h>
 #include <cuboidslib/projectile_collider.h>
+#include <cuboidslib/rocket_collider.h>
+#include <cuboidslib/explosion_collider.h>
 
 
 namespace cuboidslib {
@@ -22,14 +24,11 @@ void cuboid_collider::on_visit(bullet& b) {
 }
 
 void cuboid_collider::on_visit(rocket& r) {
-	const auto pos = r.position();
-	const auto size = r.size();
-	m_cuboid.visit(projectile_collider{ m_game, r });
-	m_game.explode(pos, size);
+	m_cuboid.visit(rocket_collider{ m_game, r });
 }
 
-void cuboid_collider::on_visit(explosion&) {
-	m_cuboid.die();
+void cuboid_collider::on_visit(explosion& e) {
+	m_cuboid.visit(explosion_collider{ m_game, e });
 }
 
 }

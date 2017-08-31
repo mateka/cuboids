@@ -170,6 +170,7 @@
     <ClInclude Include="bullet.h" />
     <ClInclude Include="crate.h" />
     <ClInclude Include="explosion.h" />
+    <ClInclude Include="explosion_collider.h" />
     <ClInclude Include="jamming_policies.h" />
     <ClInclude Include="launcher.h" />
     <ClInclude Include="projectile_collider.h" />
@@ -192,6 +193,7 @@
     <ClInclude Include="ivisitor.h" />
     <ClInclude Include="projectile.h" />
     <ClInclude Include="rocket.h" />
+    <ClInclude Include="rocket_collider.h" />
     <ClInclude Include="ship_collider.h" />
     <ClInclude Include="ship_factory.h" />
     <ClInclude Include="spray_gun.h" />
@@ -201,6 +203,7 @@
     <ClCompile Include="bullet.cpp" />
     <ClCompile Include="crate.cpp" />
     <ClCompile Include="explosion.cpp" />
+    <ClCompile Include="explosion_collider.cpp" />
     <ClCompile Include="jamming_policies.cpp" />
     <ClCompile Include="projectile_collider.cpp" />
     <ClCompile Include="collision_dispatcher.cpp" />
@@ -212,6 +215,7 @@
     <ClCompile Include="projectile.cpp" />
     <ClCompile Include="moving_ship.cpp" />
     <ClCompile Include="rocket.cpp" />
+    <ClCompile Include="rocket_collider.cpp" />
     <ClCompile Include="ship_collider.cpp" />
     <ClCompile Include="ship_factory.cpp" />
   </ItemGroup>

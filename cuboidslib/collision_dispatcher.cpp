@@ -6,7 +6,9 @@
 #include <cuboidslib/crate.h>
 #include <cuboidslib/ship_collider.h>
 #include <cuboidslib/projectile_collider.h>
+#include <cuboidslib/rocket_collider.h>
 #include <cuboidslib/cuboid_collider.h>
+#include <cuboidslib/explosion_collider.h>
 
 
 namespace cuboidslib {
@@ -24,7 +26,7 @@ void collision_dispatcher::on_visit(bullet& b) {
 }
 
 void collision_dispatcher::on_visit(rocket& r) {
-	m_other.visit(projectile_collider{ m_game, r });
+	m_other.visit(rocket_collider{ m_game, r });
 }
 
 void collision_dispatcher::on_visit(cuboid& c) {
@@ -35,22 +37,8 @@ void collision_dispatcher::on_visit(crate& c) {
 	m_other.visit(cuboid_collider{ m_game , c });
 }
 
-namespace {
-
-/* Helper class for dispatching collisions, which do the same
-*  as the collision_dispatcher for all object except explosions.
-*  For explosions it stops explosion handling. */
-class explosion_collision_dispatcher : public collision_dispatcher {
-public:
-	using collision_dispatcher::collision_dispatcher;
-
-	void on_visit(explosion& e) override {}
-};
-
-}
-
 void collision_dispatcher::on_visit(explosion& e) {
-	m_other.visit(explosion_collision_dispatcher{ m_game , e });
+	m_other.visit(explosion_collider{ m_game , e });
 }
 
 }
