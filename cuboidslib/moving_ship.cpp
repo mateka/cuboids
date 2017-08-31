@@ -65,9 +65,10 @@ void moving_ship::stop() {
 	m_body->angular_velocity({ 0, 0, 0 });
 }
 
-std::vector<std::unique_ptr<iprojectile>> moving_ship::shot(physicslib::world& w) {
+std::vector<std::unique_ptr<iprojectile>>
+moving_ship::shot(physicslib::world& w, iexplosive& ex) {
 	const auto pos = transform() * glm::vec4{ m_gunPosition, 1};
-	return m_gun->create(w, pos);
+	return m_gun->create(w, pos, ex);
 }
 
 void moving_ship::change_gun(std::unique_ptr<iprojectile_factory> gun) {

@@ -126,7 +126,7 @@ void game::stop() {
 }
 
 void game::shot() {
-	add_objects(m_player->shot(m_world), m_bullets, m_objects);
+	add_objects(m_player->shot(m_world, *this), m_bullets, m_objects);
 }
 
 void game::explode(const glm::vec3& pos, const float size) {

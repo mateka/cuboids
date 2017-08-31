@@ -8,13 +8,15 @@ namespace cuboidslib {
 
 bullet::bullet(
 	physicslib::world& w,
+	iexplosive& ex,
 	const glm::vec3& pos,
 	const glm::vec3& velocity,
 	const seconds lifeSpan,
 	const float size
 )
 	: projectile{ lifeSpan },
-	m_body{ w.create_dynamic_box(0.1f * size, size * glm::vec3{ 0.2f, 0.2f, 0.4f }, pos) }
+	m_body{ w.create_dynamic_box(0.1f * size, size * glm::vec3{ 0.2f, 0.2f, 0.4f }, pos) },
+	m_explosive{ ex }
 {
 	m_body->constrain_movement(true, false, true); // Bullet can only move on xz plane
 	m_body->constrain_rotation(false, false, true); // Bullet can only rotate around z axis
@@ -42,6 +44,10 @@ glm::mat4 bullet::transform() const {
 
 glm::vec3 bullet::position() const {
 	return m_body->position();
+}
+
+iexplosive& bullet::explosive() const {
+	return m_explosive;
 }
 
 }

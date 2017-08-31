@@ -171,6 +171,7 @@
     <ClInclude Include="crate.h" />
     <ClInclude Include="explosion.h" />
     <ClInclude Include="explosion_collider.h" />
+    <ClInclude Include="iexplosive.h" />
     <ClInclude Include="jamming_policies.h" />
     <ClInclude Include="launcher.h" />
     <ClInclude Include="projectile_collider.h" />

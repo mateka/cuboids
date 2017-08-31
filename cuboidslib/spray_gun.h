@@ -48,12 +48,16 @@ public:
 
 	/*! \brief Collection of projectile objects.
 	*   \param w physics world.
-	*   \param pos starting position of bullets. */
-	std::vector<std::unique_ptr<iprojectile>>
-		create(physicslib::world& w, const glm::vec3& pos) override {
+	*   \param pos starting position of bullets.
+	*   \param ex explosive object, which can explode. */
+	std::vector<std::unique_ptr<iprojectile>> create(
+		physicslib::world& w,
+		const glm::vec3& pos,
+		iexplosive& ex
+	) override {
 		std::vector<std::unique_ptr<iprojectile>> result;
 		for (auto& g : m_guns) {
-			auto bullets = g.create(w, pos);
+			auto bullets = g.create(w, pos, ex);
 			std::move(
 				std::begin(bullets), std::end(bullets),
 				std::back_inserter(result)

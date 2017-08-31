@@ -8,6 +8,7 @@
 #include <cuboidslib/iship_factory.h>
 #include <cuboidslib/icuboid_factory.h>
 #include <cuboidslib/explosion.h>
+#include <cuboidslib/iexplosive.h>
 #include <physicslib/world.h>
 #include <physicslib/body.h>
 
@@ -15,7 +16,7 @@
 namespace cuboidslib {
 
 /*! \brief Class for cuboids game. */
-class game final {
+class game final : public iexplosive {
 public:
 	/*! \brief Creates new game.
 	*   \param worldSize size of the world simulation.
@@ -76,7 +77,7 @@ public:
 	/*! \brief Create explosion.
 	*   \param pos position of the explosion.
 	*   \param size size of the explosion. */
-	void explode(const glm::vec3& pos, const float size);
+	void explode(const glm::vec3& pos, const float size) override;
 
 	/*! \brief Update object state.
 	*   \param screenRatio window's dimensions ratio.

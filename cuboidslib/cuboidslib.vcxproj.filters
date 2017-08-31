@@ -117,6 +117,9 @@
     <ClInclude Include="rocket_collider.h">
       <Filter>Collision Dispatching</Filter>
     </ClInclude>
+    <ClInclude Include="iexplosive.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="moving_ship.cpp">

@@ -27,8 +27,10 @@ public:
 
     /*! \brief Shot.
 	*   \param w physics world
+	*   \param ex explosive object, which can explode.
     *   \return Collection of projectile objects. */
-    virtual std::vector<std::unique_ptr<iprojectile>> shot(physicslib::world& w) = 0;
+    virtual std::vector<std::unique_ptr<iprojectile>>
+		shot(physicslib::world& w, iexplosive& ex) = 0;
 
 	/*! \brief Changes ship's gun.
 	*   \param gun new gun. */

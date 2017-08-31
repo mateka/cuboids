@@ -63,8 +63,10 @@ public:
 
 	/*! \brief Shot.
 	*   \param w physics world
+	*   \param ex explosive object, which can explode.
 	*   \return Collection of projectile objects. */
-	std::vector<std::unique_ptr<iprojectile>> shot(physicslib::world& w) override;
+	std::vector<std::unique_ptr<iprojectile>>
+		shot(physicslib::world& w, iexplosive& ex) override;
 
 	/*! \brief Changes ship's gun.
 	*   \param gun new gun. */

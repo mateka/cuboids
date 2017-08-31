@@ -43,13 +43,17 @@ public:
 
 	/*! \brief Collection of projectile objects.
 	*   \param w physics world.
-	*   \param pos starting position of bullets. */
-	std::vector<std::unique_ptr<iprojectile>>
-		create(physicslib::world& w, const glm::vec3& pos) override {
+	*   \param pos starting position of bullets.
+	*   \param ex explosive object, which can explode. */
+	std::vector<std::unique_ptr<iprojectile>> create(
+		physicslib::world& w,
+		const glm::vec3& pos,
+		iexplosive& ex
+	) override {
 		std::vector<std::unique_ptr<iprojectile>> result;
-		m_cooldown.execute([this, &result, &w, &pos]() {
+		m_cooldown.execute([this, &result, &w, &pos, &ex]() {
 			result.push_back(std::make_unique<type>(
-				w, pos, m_velocity, m_lifetime, m_size
+				w, ex, pos, m_velocity, m_lifetime, m_size
 			));
 		});
 		m_jamming.on_shot(result);

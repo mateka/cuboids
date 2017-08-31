@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cuboidslib/iprojectile.h>
+#include <cuboidslib/iexplosive.h>
 #include <glm/vec3.hpp>
 #include <memory>
 #include <vector>
@@ -23,9 +24,10 @@ public:
 
 	/*! \brief Collection of projectile objects.
 	*   \param w physics world.
-	*   \param pos starting position of bullet. */
+	*   \param pos starting position of bullet.
+	*   \param ex explosive object, which can explode. */
 	virtual std::vector<std::unique_ptr<iprojectile>>
-		create(physicslib::world& w, const glm::vec3& pos) = 0;
+		create(physicslib::world& w, const glm::vec3& pos, iexplosive& ex) = 0;
 
 	/*! \brief Check if gun is still working.
 	*   \return false, if player can shoot from this gun. */
