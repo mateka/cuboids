@@ -33,7 +33,7 @@ void crate::visit(ivisitor& v) const {
 }
 
 std::unique_ptr<iprojectile_factory> crate::gun() {
-	switch (m_gun) {
+	switch (model()) {
 	case gun_model::spray3:
 		return std::make_unique<spray_gun<bullet, jamming::ammo_count_jam>>(450ms, 3, 50);
 	case gun_model::spray5:
@@ -41,12 +41,16 @@ std::unique_ptr<iprojectile_factory> crate::gun() {
 	case gun_model::bazooka:
 		return std::make_unique<launcher<rocket, jamming::ammo_count_jam>>(400ms, glm::vec3{ 0, 0, -5.0f }, 5s, 1.0f, 15);
 	case gun_model::patriots:
-		return std::make_unique<spray_gun<rocket, jamming::ammo_count_jam>>(300ms, 3, 25);
+		return std::make_unique<wingman<rocket, jamming::ammo_count_jam>>(300ms, 25);
 	case gun_model::boombastic3:
 		return std::make_unique<spray_gun<rocket, jamming::ammo_count_jam>>(650ms, 3, 10);
 	default:
 		return std::make_unique<wingman<bullet, jamming::ammo_count_jam>>(150ms, 50);
 	}
+}
+
+gun_model crate::model() const {
+	return m_gun;
 }
 
 }

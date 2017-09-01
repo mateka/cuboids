@@ -2,10 +2,12 @@
 
 #include <cuboidslib/ivisitor.h>
 #include <cuboidslib/game.h>
+#include <cuboidslib/crate.h>
 #include <utils/seconds.h>
 #include <painterslib/pyramids.h>
 #include <painterslib/colorful_pyramids.h>
 #include <painterslib/cuboids.h>
+#include <glm/glm.hpp>
 
 
 namespace cuboids {
@@ -55,6 +57,12 @@ public:
 	/*! \brief Visits explosion. */
 	void on_visit(const cuboidslib::explosion&) override;
 private:
+	void add_crate_contents(
+		const glm::mat4& transform,
+		const cuboidslib::gun_model gun
+	);
+	glm::vec4 gun_color(const cuboidslib::gun_model gun);
+
 	// painters
 	painterslib::colorful_pyramids m_shipPainter;
 	painterslib::pyramids m_bulletsPainter;
@@ -62,6 +70,9 @@ private:
 	// cached instances to paint
 	std::vector<painterslib::pyramids::instance> m_bullets;
 	std::vector<painterslib::cuboids::instance> m_cuboids;
+	// colors
+	glm::vec4 m_bulletColor;
+	glm::vec4 m_rocketColor;
 	// other
 	glm::mat4 m_pv;
 	float m_worldSize;

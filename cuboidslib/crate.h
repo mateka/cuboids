@@ -44,6 +44,10 @@ public:
 	/*! \brief Gives gun stored in this crate.
 	*   \return Owning pointer to gun stored in this crate. */
 	std::unique_ptr<iprojectile_factory> gun();
+
+	/*! \brief Gives gun model stored in this crate.
+	*   \return Gun model stored in this crate. */
+	gun_model model() const;
 private:
 	gun_model m_gun;
 };

@@ -3,9 +3,7 @@
 #include <cuboidslib/bullet.h>
 #include <cuboidslib/rocket.h>
 #include <cuboidslib/cuboid.h>
-#include <cuboidslib/crate.h>
 #include <gllib/gl.h>
-#include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
 
@@ -23,11 +21,15 @@ game_painter::game_painter(
 		glm::vec4{1, 0, 0, 1}, glm::vec4{1, 1, 0, 1},
 		glm::vec4{0, 1, 0, 1}, glm::vec4{0, 0, 1, 1}
 	},
-	m_bulletsPainter{ maxBullets },
+	m_bulletsPainter{ maxBullets + 5 * maxCuboids },
 	m_cuboidsPainter{ 1 + maxCuboids + maxBullets + maxExplosions },
+	m_bulletColor{ 0.85f, 0.65f, 0, 1 }, m_rocketColor{ 0.85f, 0, 0, 1 },
 	m_worldSize{ worldSize }, m_showBoxes{ false }
 {
 	gl::glClearColor(0, 0, 0, 0);
+
+	m_bullets.reserve(maxBullets + 5 * maxCuboids);
+	m_cuboids.reserve(maxCuboids + maxBullets + maxExplosions);
 }
 
 void game_painter::toogle_boxes() {
@@ -70,7 +72,7 @@ void game_painter::on_visit(const cuboidslib::moving_ship& s) {
 
 void game_painter::on_visit(const cuboidslib::bullet& b) {
 	m_bullets.push_back({
-		b.transform(), glm::vec4{ 0.85f, 0.65f, 0, 1 },
+		b.transform(), m_bulletColor,
 		1.0f - static_cast<float>(b.lived() / b.life_span())
 	});
 	if (m_showBoxes)
@@ -79,7 +81,7 @@ void game_painter::on_visit(const cuboidslib::bullet& b) {
 
 void game_painter::on_visit(const cuboidslib::rocket& r) {
 	m_bullets.push_back({
-		r.transform(), glm::vec4{ 0.85f, 0, 0, 1 },
+		r.transform(), m_rocketColor,
 		1.0f - static_cast<float>(r.lived() / r.life_span())
 	});
 	if (m_showBoxes)
@@ -91,12 +93,79 @@ void game_painter::on_visit(const cuboidslib::cuboid& c) {
 }
 
 void game_painter::on_visit(const cuboidslib::crate& c) {
-	m_cuboids.push_back({ c.transform(), glm::vec4{ 0.55f, 0.27f, 0.08f, 1 } });
+	const auto transform = c.transform();
+	m_cuboids.push_back({ transform, glm::vec4{ 0.55f, 0.27f, 0.08f, 1 } });
+	add_crate_contents(transform, c.model());
 }
 
 void game_painter::on_visit(const cuboidslib::explosion& e) {
 	const auto ratio = e.lived() / e.life_span();
 	m_cuboids.push_back({ e.transform(), glm::vec4{ 1, 1 - ratio, 0, 0.5 } });
+}
+
+namespace {
+
+int bullets_count(const cuboidslib::gun_model gun) {
+	switch (gun) {
+	case cuboidslib::gun_model::wingman:
+		return 2;
+	case cuboidslib::gun_model::spray3:
+		return 3;
+	case cuboidslib::gun_model::spray5:
+		return 5;
+	case cuboidslib::gun_model::bazooka:
+		return 1;
+	case cuboidslib::gun_model::patriots:
+		return 2;
+	case cuboidslib::gun_model::boombastic3:
+		return 3;
+	default:
+		return 1;
+	}
+}
+
+}
+
+void game_painter::add_crate_contents(
+	const glm::mat4& transform,
+	const cuboidslib::gun_model gun
+) {
+	using namespace cuboidslib;
+
+	const auto color = gun_color(gun);
+	const auto count = bullets_count(gun);
+	auto world = transform;
+	world *= glm::rotate(glm::mat4{}, 45.0f, glm::vec3{ 0, 1, 1 });
+	world *= glm::scale(glm::mat4{}, (count > 1 ? 0.5f: 1.0f) * glm::vec3{ 1 });
+	const auto item_scale = glm::scale(glm::mat4{}, 0.3f * glm::vec3{ 1, 1, 2 });
+	// Add pyramids
+	if (gun == gun_model::wingman || gun == gun_model::patriots) {
+		const auto left = glm::translate(glm::mat4(), glm::vec3{ -0.3f, 0, 0 });
+		const auto right = glm::translate(glm::mat4(), glm::vec3{ 0.3f, 0, 0 });
+		m_bullets.push_back({ world * left * item_scale, color, 1.0 });
+		m_bullets.push_back({ world * right * item_scale, color, 1.0 });
+	}
+	else {
+		for (int i = 0; i < count; ++i) {
+			const auto a = i - count / 2;
+			auto model = glm::translate(glm::mat4{}, glm::vec3{ 0, 0, 1 });
+			model *= glm::rotate(glm::mat4{}, a * 0.5f, glm::vec3{ 0, 1, 0 });
+			model *= glm::translate(glm::mat4{}, glm::vec3{ 0, 0, -1 });
+			model *= item_scale;
+			m_bullets.push_back({world * model, color, 1.0 });
+		}
+	}
+}
+
+glm::vec4 game_painter::gun_color(const cuboidslib::gun_model gun) {
+	switch (gun) {
+	case cuboidslib::gun_model::bazooka:
+	case cuboidslib::gun_model::patriots:
+	case cuboidslib::gun_model::boombastic3:
+		return m_rocketColor;
+	default:
+		return m_bulletColor;
+	}
 }
 
 }

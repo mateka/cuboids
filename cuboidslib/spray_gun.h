@@ -29,8 +29,8 @@ public:
 	)
 		: m_jamming{ jammingPolicy }
 	{
-		for (std::size_t i = 0; i < n; ++i) {
-			const auto x = (i - 0.5f * n) * 0.3;
+		for (int i = 0; i < n; ++i) {
+			const auto x = i - static_cast<int>(n / 2);
 			m_guns.emplace_back(
 				cooldown, glm::vec3{ x, 0, -4.0f },
 				3s, 0.75f, jamming::no_jam{}
